@@ -2,5 +2,6 @@ namespace English;
 
 public interface IVerb
 {
-    ISentence Sentence { get; }
+    Tense Tense { get; }
+    string ToString(ISubject subject);
 }

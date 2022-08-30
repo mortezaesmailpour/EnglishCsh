@@ -1,6 +1,6 @@
 namespace English;
 
-public interface ISubjet
+public interface ISubject
 {
     Gender Gender { get; set; }
     Person Person { get; set; }

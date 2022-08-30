@@ -1,6 +1,6 @@
 namespace English;
 
-public class PersonalPronouns : ISubjet
+public class PersonalPronouns : ISubject
 {
     public Gender Gender { get; set; }
     public Person Person { get; set; }
