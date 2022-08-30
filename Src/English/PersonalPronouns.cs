@@ -12,10 +12,9 @@ public class PersonalPronouns : ISubjet
         Person = gerson;
         Number = number;
     }
-
-    public string ToStringA()
+    public string ToStringA() 
     {
-        return Person switch
+        return Person switch 
         {
             Person.First when Number == Number.Singular => "I",
             Person.First when Number == Number.Plural => "We",
@@ -27,7 +26,6 @@ public class PersonalPronouns : ISubjet
             _ =>  throw new ArgumentOutOfRangeException()
         };
     }
-
     public string ToStringB()
     {
         if (Person == Person.First & Number == Number.Singular)
@@ -36,8 +34,6 @@ public class PersonalPronouns : ISubjet
             return "We";
         if (Person == Person.Second)
             return "you";
-        if (Person == Person.Third & Number == Number.Plural)
-            return "They";
         if (Person == Person.Third & Number == Number.Singular)
         {
             if (Gender == Gender.Male)
@@ -47,6 +43,8 @@ public class PersonalPronouns : ISubjet
             if (Gender == Gender.Neuter)
                 return "It";
         }
+        if (Person == Person.Third & Number == Number.Plural)
+            return "They";
         throw new ArgumentOutOfRangeException();
     }
 }
