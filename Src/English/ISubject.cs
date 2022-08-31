@@ -1,5 +1,7 @@
+using English.PersonGenderNumbers;
+
 namespace English;
 
-public interface ISubject : IPronoun
+public interface ISubject : IPersonGenderNumber
 {
 }
