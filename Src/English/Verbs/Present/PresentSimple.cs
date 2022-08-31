@@ -1,9 +1,9 @@
-namespace English.Verbs.Persent;
+namespace English.Verbs.Present;
 
 public class PresentSimple : Verb
 {
-    public PresentSimple(string baseForm, string? pastSimple = null, string? pastParticiple = null) : base(baseForm,
-        Tense.PresentSimple, pastSimple, pastParticiple)
+    public PresentSimple(string baseForm, string? pastSimple = null, string? pastParticiple = null)
+        : base(baseForm, pastSimple, pastParticiple, Tense.PresentSimple)
     {
     }
 

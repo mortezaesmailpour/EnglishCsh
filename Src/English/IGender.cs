@@ -1,8 +1,6 @@
 namespace English;
 
-public enum Gender
+public interface IGender
 {
-    Male,
-    Female,
-    Neuter
+    Gender Gender { get; set; }
 }

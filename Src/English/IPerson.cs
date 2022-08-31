@@ -1,8 +1,6 @@
 namespace English;
 
-public enum Person
+public interface IPerson
 {
-    First,
-    Second,
-    Third
+    Person Person { get; set; }
 }

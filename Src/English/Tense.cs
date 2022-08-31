@@ -7,8 +7,8 @@ public enum Tense
     Past = 2,
     Future = 4,
     Conditional = 8,
-    Times = Present | Past|Future|Conditional,
-    Modes = Continuous| Perfect,
+    Times = Present | Past | Future | Conditional,
+    Modes = Continuous | Perfect,
 
     Continuous = 16,
     Perfect = 32,

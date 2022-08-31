@@ -1,8 +1,5 @@
 namespace English;
 
-public interface ISubject
+public interface ISubject : IPronoun
 {
-    Gender Gender { get; set; }
-    Person Person { get; set; }
-    Number Number{ get; set; }
 }

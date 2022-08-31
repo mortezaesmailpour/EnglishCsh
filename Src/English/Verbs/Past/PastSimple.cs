@@ -2,8 +2,8 @@ namespace English.Verbs.Past;
 
 public class PastSimple : Verb
 {
-    public PastSimple(string baseForm, string? pastSimple = null, string? pastParticiple = null) : base(baseForm,
-        Tense.PastSimple, pastSimple, pastParticiple)
+    public PastSimple(string baseForm, string? pastSimple = null, string? pastParticiple = null)
+        : base(baseForm, pastSimple, pastParticiple, Tense.PastSimple)
     {
     }
 

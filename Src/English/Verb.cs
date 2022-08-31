@@ -1,7 +1,6 @@
-using System.Diagnostics;
 using English.Verbs;
 using English.Verbs.Past;
-using English.Verbs.Persent;
+using English.Verbs.Present;
 
 namespace English;
 
@@ -11,7 +10,7 @@ public abstract class Verb : BaseVerb, IVerb
 
     public abstract string ToString(ISubject subject);
 
-    protected Verb(string baseForm, Tense? tense = null, string? pastSimple=null, string? pastParticiple = null) : base(baseForm, pastSimple,
+    protected Verb(string baseForm, string? pastSimple=null, string? pastParticiple = null, Tense? tense = null) : base(baseForm, pastSimple,
         pastParticiple)
     {
         Tense = tense ?? Tense.PresentSimple;
@@ -26,7 +25,7 @@ public abstract class Verb : BaseVerb, IVerb
     public Verb Continuous() => ChangeTense(Tense | Tense.Continuous);
     public Verb Perfect() => ChangeTense(Tense | Tense.Perfect);
     
-    public Verb ChangeTense(Tense tense) => tense switch
+    private Verb ChangeTense(Tense tense) => tense switch
     {
         Tense.PresentSimple => new PresentSimple(BaseForm, PastSimple, PastParticiple),
         Tense.PresentContinuous => new PresentContinuous(BaseForm, PastSimple, PastParticiple),

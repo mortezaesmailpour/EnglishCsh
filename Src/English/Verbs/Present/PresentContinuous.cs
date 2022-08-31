@@ -1,12 +1,11 @@
-namespace English.Verbs.Persent;
+namespace English.Verbs.Present;
 
 public class PresentContinuous : Verb
 {
-    public PresentContinuous(string baseForm, string? pastSimple = null, string? pastParticiple = null) : base(baseForm,
-        Tense.PresentContinuous, pastSimple, pastParticiple)
+    public PresentContinuous(string baseForm, string? pastSimple = null, string? pastParticiple = null) 
+        : base(baseForm, pastSimple, pastParticiple, Tense.PresentContinuous)
     {
     }
-
     public override string ToString(ISubject subject) => subject.Person switch
     {
         Person.First when subject.Number == Number.Singular => "am " + Gerund,

@@ -1,9 +1,9 @@
-namespace English.Verbs.Persent;
+namespace English.Verbs.Present;
 
 public class PresentPerfectContinuous : Verb
 {
-    public PresentPerfectContinuous(string baseForm, string? pastSimple = null, string? pastParticiple = null) : base(
-        baseForm, Tense.PresentPerfectContinuous, pastSimple, pastParticiple)
+    public PresentPerfectContinuous(string baseForm, string? pastSimple = null, string? pastParticiple = null) 
+        : base(baseForm, pastSimple, pastParticiple, Tense.PresentPerfectContinuous)
     {
     }
 
