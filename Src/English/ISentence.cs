@@ -1,3 +1,5 @@
+using English.Verbs;
+
 namespace English;
 
 public interface ISentence

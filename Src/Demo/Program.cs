@@ -2,6 +2,8 @@
 using BenchmarkDotNet.Running;
 using Demo;
 using English;
+using English.PersonGenderNumbers;
+using English.Pronouns;
 using English.Verbs;
 using English.Verbs.Present;
 
@@ -9,7 +11,8 @@ using English.Verbs.Present;
 
 var play = new PresentSimple("play");
 var go = new PresentSimple("go","went","gone");
-var he = new PersonalPronouns( Person.First, Number.Singular);
+var he = new SubjectPersonalPronouns( Person.Third, Number.Singular);
+var I = new SubjectPersonalPronouns( PersonGenderNumber.FirstSingular);
 
 Console.WriteLine(go.ToString(he));
 

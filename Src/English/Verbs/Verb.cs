@@ -1,8 +1,7 @@
-using English.Verbs;
 using English.Verbs.Past;
 using English.Verbs.Present;
 
-namespace English;
+namespace English.Verbs;
 
 public abstract class Verb : BaseVerb, IVerb
 {

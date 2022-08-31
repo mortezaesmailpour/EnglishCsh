@@ -1,3 +1,5 @@
+using English.PersonGenderNumbers;
+
 namespace English.Verbs.Past;
 
 public class PastContinuous : Verb

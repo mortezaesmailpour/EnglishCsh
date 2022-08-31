@@ -1,4 +1,4 @@
-namespace English;
+namespace English.Verbs;
 
 [Flags]
 public enum Tense
