@@ -1,0 +1,11 @@
+﻿<Application x:Class="English.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:English.UI"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             DispatcherUnhandledException="Application_Dispatcher_UnhandledException"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+            <sys:String x:Key="AppMsg">Hello, from Application</sys:String>
+    </Application.Resources>
+</Application>
