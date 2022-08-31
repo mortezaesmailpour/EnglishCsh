@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:English.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" >
+        Title="MainWindow" Height="450" Width="800" Background="DarkSlateBlue">
     
     <Window.Resources>
         <sys:String x:Key="WindowMsg">Hello, from Window</sys:String>
@@ -26,8 +26,22 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
+        
+        <StackPanel Margin="15" Grid.Column="3">
+            <WrapPanel>
+                <TextBlock Text="Window title:  " />
+                <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Width="150" />
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0">
+                <TextBlock Text="Window dimensions: " />
+                <TextBox Text="{Binding Width}" Width="50" />
+                <TextBlock Text=" x " />
+                <TextBox Text="{Binding Height}" Width="50" />
+            </WrapPanel>
+        </StackPanel>
+        
         <DockPanel Margin="10" Name="pnlMain" Grid.Column="2">
-            <DockPanel.Resources>
+            <DockPanel.Resources >
                 <sys:String x:Key="Msg">Hello, from Panel</sys:String>
             </DockPanel.Resources>
 
@@ -35,11 +49,29 @@
                 <Button Name="btnClickMe" Click="btnClickMe_Click">Click me!</Button>
             </WrapPanel>
 
-            <ListBox Name="lbResult" />
+            <ListBox Name="lbResult" Foreground="Chartreuse"  Background="Transparent"/>
         </DockPanel>
         <StackPanel Margin="10">
             <Label Content="{StaticResource ComboBoxTitle}" />
             <ComboBox ItemsSource="{StaticResource ComboBoxItems}" />
+            
+            
+            <TextBox Name="txtValue" />
+            <WrapPanel Margin="0,10">
+                <TextBlock Foreground="Aqua" Text="Value: " FontWeight="Bold" />
+                <TextBlock Foreground="Aquamarine" Text="{Binding Path=Text, ElementName=txtValue}" />
+            </WrapPanel>
+            
+            <TextBlock Margin="10" Foreground="Red">
+                This is a TextBlock control<LineBreak />
+                with multiple lines of text.
+            </TextBlock>
+            <TextBlock Margin="10" TextTrimming="CharacterEllipsis" Foreground="Green">
+                This is a TextBlock control with text that may not be rendered completely, which will be indicated with an ellipsis.
+            </TextBlock>
+            <TextBlock Margin="10" TextWrapping="Wrap" Foreground="Blue">
+                This is a TextBlock control with automatically wrapped text, using the TextWrapping property.
+            </TextBlock>
         </StackPanel>
         
         <Button Click="ButtonBase_OnClick" Width="120" Height="40" FontWeight="Bold" Grid.Column="1">

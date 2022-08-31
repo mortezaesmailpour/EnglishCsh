@@ -23,6 +23,7 @@ namespace English.UI
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
