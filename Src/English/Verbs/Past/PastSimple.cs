@@ -1,3 +1,5 @@
+using English.SentenceElements;
+
 namespace English.Verbs.Past;
 
 public class PastSimple : Verb

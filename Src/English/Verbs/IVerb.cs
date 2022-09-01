@@ -1,3 +1,5 @@
+using English.SentenceElements;
+
 namespace English.Verbs;
 
 public interface IVerb
