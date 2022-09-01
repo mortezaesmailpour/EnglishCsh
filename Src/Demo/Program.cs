@@ -2,9 +2,9 @@
 
 using English.Words;
 
-Word w1 = new (){Name = "first"};
-Word w2 = new (){Name = "Second"};
-Word w3 = Word.Plus( w1,w2);
-var w4 = w1- w2;
+Word i = new (){Name = "I"};
+Word am = new (){Name = "am"};
+var w3 = i + am;
+var w4 = i - am + w3 - (-i);
 Console.WriteLine(w3);
 Console.WriteLine(w4);
