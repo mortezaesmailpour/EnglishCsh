@@ -5,6 +5,7 @@ namespace English.Pronouns;
 
 public class SubjectPersonalPronouns : PersonalPronoun, ISubject
 {
+    public static List<SubjectPersonalPronouns> All => new() { I, We, You, He, She, It, They };
     public static SubjectPersonalPronouns I => new(Person.First, Number.Singular);
     public static SubjectPersonalPronouns We => new(Person.First);
     public static SubjectPersonalPronouns You => new(Person.Second);

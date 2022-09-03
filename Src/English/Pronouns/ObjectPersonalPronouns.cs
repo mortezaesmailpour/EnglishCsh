@@ -5,6 +5,7 @@ namespace English.Pronouns;
 
 public class ObjectPersonalPronouns : PersonalPronoun, IObject
 {
+    public static List<ObjectPersonalPronouns> All => new() { Me, Us, You, Him, Her, It, Them };
     public static ObjectPersonalPronouns Me => new(Person.First, Number.Singular);
     public static ObjectPersonalPronouns Us => new(Person.First);
     public static ObjectPersonalPronouns You => new(Person.Second);

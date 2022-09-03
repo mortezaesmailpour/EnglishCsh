@@ -1,4 +1,6 @@
 using English.SentenceElements;
+using English.Verbs.Conditional;
+using English.Verbs.Future;
 using English.Verbs.Past;
 using English.Verbs.Present;
 
@@ -27,14 +29,46 @@ public class Verb : BaseVerb, IVerb
     
     private Verb ChangeTense(Tense tense) => tense switch
     {
-        Tense.PresentSimple => new PresentSimple(BaseForm, PastSimple, PastParticiple),
-        Tense.PresentContinuous => new PresentContinuous(BaseForm, PastSimple, PastParticiple),
-        Tense.PresentPerfect => new PresentPerfect(BaseForm, PastSimple, PastParticiple),
-        Tense.PresentPerfectContinuous => new PresentPerfectContinuous(BaseForm, PastSimple, PastParticiple),
-        Tense.PastSimple => new PastSimple(BaseForm, PastSimple, PastParticiple),
-        Tense.PastContinuous => new PastContinuous(BaseForm, PastSimple, PastParticiple),
-        Tense.PastPerfect => new PastPerfect(BaseForm, PastSimple, PastParticiple),
-        Tense.PastPerfectContinuous => new PastPerfectContinuous(BaseForm, PastSimple, PastParticiple),
-        _ => new PresentSimple(BaseForm, PastSimple, PastParticiple),
+        Tense.PresentSimple => SimplePresent(),
+        Tense.PresentContinuous => PresentContinuous(),
+        Tense.PresentPerfect => PresentPerfect(),
+        Tense.PresentPerfectContinuous => PresentPerfectContinuous(),
+        Tense.PastSimple => SimplePast(),
+        Tense.PastContinuous => PastContinuous(),
+        Tense.PastPerfect => PastPerfect(),
+        Tense.PastPerfectContinuous => PastPerfectContinuous(),
+        Tense.FutureSimple => SimpleFuture(),
+        Tense.FutureContinuous => FutureContinuous(),
+        Tense.FuturePerfect => FuturePerfect(),
+        Tense.FuturePerfectContinuous => FuturePerfectContinuous(),
+        Tense.ConditionalSimple => SimpleConditional(),
+        Tense.ConditionalContinuous => ConditionalContinuous(),
+        Tense.ConditionalPerfect => ConditionalPerfect(),
+        Tense.ConditionalPerfectContinuous => ConditionalPerfectContinuous(),
+        _ => SimplePresent(),
     };
+
+    public List<Verb> AllTenses => new()
+    {
+        SimplePresent(), PresentContinuous(), PresentPerfect(), PresentPerfectContinuous(),
+        SimplePast(), PastContinuous(), PastPerfect(), PastPerfectContinuous(),
+        SimpleFuture(), FutureContinuous(), FuturePerfect(), FuturePerfectContinuous(),
+        SimpleConditional(), ConditionalContinuous(), ConditionalPerfect(), ConditionalPerfectContinuous()
+    };
+    public PresentSimple SimplePresent() => new(BaseForm, PastSimple, PastParticiple);
+    public PresentContinuous PresentContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PresentPerfect PresentPerfect() => new(BaseForm, PastSimple, PastParticiple);
+    public PresentPerfectContinuous PresentPerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PastSimple SimplePast() => new(BaseForm, PastSimple, PastParticiple);
+    public PastContinuous PastContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PastPerfect PastPerfect() => new(BaseForm, PastSimple, PastParticiple);
+    public PastPerfectContinuous PastPerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public FutureSimple SimpleFuture() => new(BaseForm, PastSimple, PastParticiple);
+    public FutureContinuous FutureContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public FuturePerfect FuturePerfect() => new(BaseForm, PastSimple, PastParticiple);
+    public FuturePerfectContinuous FuturePerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public ConditionalSimple SimpleConditional() => new(BaseForm, PastSimple, PastParticiple);
+    public ConditionalContinuous ConditionalContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public ConditionalPerfect ConditionalPerfect() => new(BaseForm, PastSimple, PastParticiple);
+    public ConditionalPerfectContinuous ConditionalPerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
 }
