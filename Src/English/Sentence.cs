@@ -9,6 +9,7 @@ public class Sentence : ISentence
     public ISubject Subject { get; set; }
     public IVerb Verb { get; set; }
     public IObject? Object { get; set; }
+    public static Sentence operator + (Sentence a, IObject b) => new (a.Subject,a.Verb,b);
 
     public Sentence(ISubject subject, IVerb verb, IObject? @object)
     {
@@ -19,6 +20,6 @@ public class Sentence : ISentence
 
     public override string ToString()
     {
-        return Verb.ToString(Subject) + Object;
+        return $"{Subject} {Verb.ToStringFor(Subject)} {Object}";
     }
 }

@@ -13,8 +13,9 @@ public class SubjecVerb : ISentenceElement
         Verb = verb;
     }
 
+    public static Sentence operator +(SubjecVerb a, IObject b) => new (a.Subject,a.Verb,b);
     public override string ToString()
     {
-        return $"{Subject} {Verb.ToString(Subject)}";
+        return $"{Subject} {Verb.ToStringFor(Subject)}";
     }
 }

@@ -10,7 +10,7 @@ public class PastContinuous : Verb
     {
     }
 
-    public override string ToString(ISubject subject) => subject.Number switch
+    public override string ToStringFor(ISubject subject) => subject.Number switch
     {
         Number.Singular => "was " + Gerund,
         _ => "were " + Gerund,

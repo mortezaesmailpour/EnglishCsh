@@ -4,13 +4,13 @@ using English.Verbs.Present;
 
 namespace English.Verbs;
 
-public abstract class Verb : BaseVerb, IVerb
+public class Verb : BaseVerb, IVerb
 {
     public Tense Tense { get; }
 
-    public abstract string ToString(ISubject subject);
+    public virtual string ToStringFor(ISubject subject) => ChangeTense(Tense).ToStringFor(subject);
 
-    protected Verb(string baseForm, string? pastSimple=null, string? pastParticiple = null, Tense? tense = null) : base(baseForm, pastSimple,
+    public Verb(string baseForm, string? pastSimple=null, string? pastParticiple = null, Tense? tense = null) : base(baseForm, pastSimple,
         pastParticiple)
     {
         Tense = tense ?? Tense.PresentSimple;

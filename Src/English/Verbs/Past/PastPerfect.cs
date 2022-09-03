@@ -9,5 +9,5 @@ public class PastPerfect : Verb
     {
     }
 
-    public override string ToString(ISubject subject) => "had " + PastParticiple;
+    public override string ToStringFor(ISubject subject) => "had " + PastParticiple;
 }

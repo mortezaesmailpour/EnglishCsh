@@ -10,7 +10,7 @@ public class PresentSimple : Verb
     {
     }
 
-    public override string ToString(ISubject subject) => subject.Person switch
+    public override string ToStringFor(ISubject subject) => subject.Person switch
     {
         Person.Third when subject.Number == Number.Singular => BaseForm + "s",
         _ => BaseForm

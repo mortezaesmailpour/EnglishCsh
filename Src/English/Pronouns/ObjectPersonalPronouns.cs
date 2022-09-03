@@ -3,7 +3,7 @@ using English.SentenceElements;
 
 namespace English.Pronouns;
 
-public class ObjectPersonalPronouns : PersonalPronoun, ISubject
+public class ObjectPersonalPronouns : PersonalPronoun, IObject
 {
     public static ObjectPersonalPronouns Me => new(Person.First, Number.Singular);
     public static ObjectPersonalPronouns Us => new(Person.First);

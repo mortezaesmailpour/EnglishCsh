@@ -9,5 +9,5 @@ public class PastSimple : Verb
     {
     }
 
-    public override string ToString(ISubject subject) => PastSimple;
+    public override string ToStringFor(ISubject subject) => PastSimple;
 }

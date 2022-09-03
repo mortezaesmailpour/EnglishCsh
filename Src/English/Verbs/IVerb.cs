@@ -14,5 +14,5 @@ public interface IVerb
     public Verb Continuous();
     public Verb Perfect();
     
-    string ToString(ISubject subject);
+    string ToStringFor(ISubject subject);
 }

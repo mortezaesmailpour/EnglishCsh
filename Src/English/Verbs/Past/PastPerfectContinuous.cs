@@ -9,5 +9,5 @@ public class PastPerfectContinuous : Verb
     {
     }
 
-    public override string ToString(ISubject subject) => "had been " + Gerund;
+    public override string ToStringFor(ISubject subject) => "had been " + Gerund;
 }

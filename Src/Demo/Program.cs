@@ -1,31 +1,12 @@
 ﻿using English.PersonGenderNumbers;
 using English.Pronouns;
 using English.SentenceElements;
-using English.Verbs.Past;
+using English.Verbs;
 
 
+ISubject subject = new SubjectPersonalPronouns(Person.Third,Number.Singular,Gender.Female);
+IObject obj = new ObjectPersonalPronouns(Person.First,Number.Singular);
+IObject obj2 = new ObjectPersonalPronouns(Person.Third,Number.Singular,Gender.Neuter);
+var verb = new Verb("write","wrote","written").Past().Perfect();
 
-ISubject s = new SubjectPersonalPronouns(Person.First);
-var v = new PastPerfectContinuous("write","wrote","written");
-
-Console.WriteLine(s + v);
-
-
-
-
-
-//
-//
-// Word i = new("I");
-// Word am = new("am");
-// var book = new ObjectWord("book");
-// var box = new ObjectWord("box");
-// var he = new SubjectWord(new SubjectPersonalPronouns(Person.Third, Number.Singular, Gender.Male));
-// var hadwriteen = new VerbWord(new PastPerfect("write", "wrote", "written"));
-// var w3 = i + am;
-// var w4 = i - am + w3 - (-i);
-// Console.WriteLine(w3);
-// Console.WriteLine(+book);
-// Console.WriteLine(+box);
-// hadwriteen.Verb = hadwriteen.Verb.Continuous();
-// Console.WriteLine(he+hadwriteen+(+book));
+Console.WriteLine(subject + verb + obj + obj2);
