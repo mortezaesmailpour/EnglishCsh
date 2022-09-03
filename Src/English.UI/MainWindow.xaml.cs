@@ -4,14 +4,17 @@ namespace English.UI;
 
 public partial class MainWindow : Window
 {
+    private readonly MainViewModel _viewModel;
     public MainWindow()
     {
+        //_viewModel = new MainViewModel("Morteza");;
         InitializeComponent();
-        DataContext = new MainViewModel("Morteza");
+        //DataContext = _viewModel;
     }
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-        (DataContext as MainViewModel).UserName = "sdbhfksdfbnsdf";
+        //_viewModel.Password = PasswordBox.Password;
+        //_viewModel.Login();
     }
 }
