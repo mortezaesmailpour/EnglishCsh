@@ -1,4 +1,7 @@
-﻿using English.UI.Commands;
+﻿using English.Pronouns;
+using English.SentenceElements;
+using English.UI.Commands;
+using English.Verbs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,29 +33,26 @@ public class MainViewModel : BaseViewModel
     public MainViewModel()
     {
         AddCommand = new CommandHandler(Add);
-        _subjects = new ObservableCollection<SubjectModel>()
+        _subjects = new ObservableCollection<SubjectModel>();
+        Verb verb = new Verb("play");
+
+
+
+        var subject = SubjectPersonalPronouns.He;
+        foreach (var item in SubjectPersonalPronouns.All)
         {
-           new SubjectModel() { Id = 1, Name = "I" },
-           new SubjectModel() { Id = 1, Name = "We" },
-           new SubjectModel() { Id = 1, Name = "You" },
-           new SubjectModel() { Id = 3, Name = "He" },
-           new SubjectModel() { Id = 4, Name = "She" },
-           new SubjectModel() { Id = 4, Name = "It" },
-           new SubjectModel() { Id = 4, Name = "They" },
-           new SubjectModel() { Id = 4, Name = "My friend and I" },
-           new SubjectModel() { Id = 4, Name = "Morteza" },
-           new SubjectModel() { Id = 4, Name = "Her dog" },
-        };
-        _selectedSubject = Subjects.FirstOrDefault() ?? new SubjectModel() { Name = ":(" };
+            _subjects.Add(new SubjectModel() { Subject=item,Name=item.ToString()});
+        }
+        _selectedSubject = _subjects.FirstOrDefault();
     }
 
     private void Add()
     {
-        Subjects.Add(new SubjectModel() { Name = "New One" });
+        //Subjects.Add(new SubjectModel() { Name = "New One" });
     }
 }
 public class SubjectModel
 {
-    public int Id { get; set; }
+    public ISubject Subject { get; set; }
     public string Name { get; set; }
 }
