@@ -15,44 +15,77 @@ namespace English.UI.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
-    private ObservableCollection<SubjectModel> _subjects;
-
-    public ObservableCollection<SubjectModel> Subjects
-    {
-        get { return _subjects; }
-        set { _subjects = value; }
-    }
-    private SubjectModel _selectedSubject;
-
-    public SubjectModel SelectedSubject
-    {
-        get { return _selectedSubject; }
-        set { _selectedSubject = value; }
-    }
-    public ICommand AddCommand { get; }
+    public ObservableCollection<SubjectModel> Subjects { get; init; }
+    public SubjectModel SelectedSubject { get; set; }
+    public ObservableCollection<ObjectModel> Objects { get; init; }
+    public ObjectModel SelectedObject { get; set; }
+    public ObservableCollection<TenseModel> Tenses { get; init; }
+    public TenseModel SelectedTense { get; set; }
+    public ICommand UpdateCommand { get; }
+    public string Result { get; private set; }
     public MainViewModel()
     {
-        AddCommand = new CommandHandler(Add);
-        _subjects = new ObservableCollection<SubjectModel>();
+        UpdateCommand = new CommandHandler(UpdateResult);
+        Subjects = new ObservableCollection<SubjectModel>();
+        Objects = new ObservableCollection<ObjectModel>();
+        Tenses = new ObservableCollection<TenseModel>();
         Verb verb = new Verb("play");
 
+        var subject = SubjectPersonalPronouns.She;   
+        var @object = ObjectPersonalPronouns.Him;
 
-
-        var subject = SubjectPersonalPronouns.He;
         foreach (var item in SubjectPersonalPronouns.All)
-        {
-            _subjects.Add(new SubjectModel() { Subject=item,Name=item.ToString()});
-        }
-        _selectedSubject = _subjects.FirstOrDefault();
+            Subjects.Add(new SubjectModel(item));
+        SelectedSubject = Subjects.FirstOrDefault();
+
+        foreach (var item in ObjectPersonalPronouns.All)
+            Objects.Add(new ObjectModel(item));
+        SelectedObject = Objects.FirstOrDefault();
+
+        foreach (var item in verb.AllTenses)
+            Tenses.Add(new TenseModel(item));
+        SelectedTense = Tenses.FirstOrDefault();
+        UpdateResult();
     }
 
-    private void Add()
+    public void UpdateResult()
     {
-        //Subjects.Add(new SubjectModel() { Name = "New One" });
+        var sbj = SelectedSubject?.Subject;
+        var obj = SelectedObject?.Object;
+        var vrb = SelectedTense?.Verb;
+        Result = $"{sbj} {vrb.ToStringFor(sbj)} {obj}";
+        OnPropertyChanged(nameof(Result));
     }
 }
 public class SubjectModel
 {
     public ISubject Subject { get; set; }
     public string Name { get; set; }
+    public SubjectModel(ISubject subject)
+    {
+        Subject = subject;
+        Name = Subject.ToString() ?? "NULL";
+    }
+}
+    public class ObjectModel
+    {
+        public IObject Object { get; set; }
+        public string Name { get; set; }
+        public ObjectModel(IObject @object)
+        {
+            Object = @object;
+            Name = Object.ToString() ?? "NULL";
+        }
+
+    }
+
+public class TenseModel
+{
+    public IVerb Verb { get; set; }
+    public string Name { get; set; }
+    public TenseModel(IVerb verb)
+    {
+        Verb = verb;
+        Name = verb.Tense.ToString() ?? "NULL";
+    }
 }

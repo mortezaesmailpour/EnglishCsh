@@ -14,10 +14,22 @@
     <Grid>
         <StackPanel Orientation="Vertical">
 
+            <Label Content="Subjests"  />
             <ComboBox DisplayMemberPath="Name"
                 ItemsSource="{Binding Path=Subjects}"    
                 SelectedItem="{Binding Path=SelectedSubject}"  />
-            <Button Width="120" Content="Add" Command="{Binding AddCommand}"/>
+            <Label Content="Objests"  />
+            <ComboBox DisplayMemberPath="Name"
+                ItemsSource="{Binding Path=Objects}"    
+                SelectedItem="{Binding Path=SelectedObject}"  />
+            <Label Content="Tenses"  />
+            <ComboBox DisplayMemberPath="Name"
+                ItemsSource="{Binding Path=Tenses}"    
+                SelectedItem="{Binding Path=SelectedTense}"  />
+            <Label Content="Actions"  />
+            <Button Width="120" Content="Update" Command="{Binding UpdateCommand}"/>
+            <Label Content="{Binding Result}"  />
+
         </StackPanel>
     </Grid>
 </Window>
