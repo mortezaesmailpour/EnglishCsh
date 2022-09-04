@@ -30,19 +30,25 @@ public class MainViewModel : BaseViewModel
     public MainViewModel()
     {
         AddCommand = new CommandHandler(Add);
-        Subjects = new ObservableCollection<SubjectModel>()
+        _subjects = new ObservableCollection<SubjectModel>()
         {
-           new SubjectModel() { Id = 1, Name = "Nirav" },
-           new SubjectModel() { Id = 1, Name = "Kapil" },
-           new SubjectModel() { Id = 3, Name = "Arvind" },
-           new SubjectModel() { Id = 4, Name = "Rajan" },
+           new SubjectModel() { Id = 1, Name = "I" },
+           new SubjectModel() { Id = 1, Name = "We" },
+           new SubjectModel() { Id = 1, Name = "You" },
+           new SubjectModel() { Id = 3, Name = "He" },
+           new SubjectModel() { Id = 4, Name = "She" },
+           new SubjectModel() { Id = 4, Name = "It" },
+           new SubjectModel() { Id = 4, Name = "They" },
+           new SubjectModel() { Id = 4, Name = "My friend and I" },
+           new SubjectModel() { Id = 4, Name = "Morteza" },
+           new SubjectModel() { Id = 4, Name = "Her dog" },
         };
-        SelectedSubject = Subjects.FirstOrDefault() ?? new SubjectModel() { Name = "test" };
+        _selectedSubject = Subjects.FirstOrDefault() ?? new SubjectModel() { Name = ":(" };
     }
 
     private void Add()
     {
-        Subjects.Add(new SubjectModel() { Name = "neeeww" });
+        Subjects.Add(new SubjectModel() { Name = "New One" });
     }
 }
 public class SubjectModel

@@ -8,20 +8,16 @@
         xmlns:viewModels="clr-namespace:English.UI.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="380">
-    <Window.Resources>
-        <viewModels:MainViewModel x:Key="mainVM"/>
-    </Window.Resources>
+    <Window.DataContext>
+        <viewModels:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <StackPanel Orientation="Vertical">
 
-    <StackPanel Orientation="Vertical" DataContext="{Binding Source={StaticResource mainVM}}">
-
-        <ComboBox HorizontalAlignment="Left"   
-                  Margin="183,39,0,0"   
-                  VerticalAlignment="Top"   
-                  Width="120"   
-                  ItemsSource="{Binding Path=Subjects}"    
-                  SelectedItem="{Binding Path=SelectedSubject}"  
-                  DisplayMemberPath="Name"/>
-        <Button Content="Add" Command="{Binding AddCommand}"/>
-    </StackPanel>
-
+            <ComboBox DisplayMemberPath="Name"
+                ItemsSource="{Binding Path=Subjects}"    
+                SelectedItem="{Binding Path=SelectedSubject}"  />
+            <Button Width="120" Content="Add" Command="{Binding AddCommand}"/>
+        </StackPanel>
+    </Grid>
 </Window>
