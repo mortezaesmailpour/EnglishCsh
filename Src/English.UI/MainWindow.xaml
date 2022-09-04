@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:English.UI"
+        xmlns:viewModels="clr-namespace:English.UI.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" >
         <Window.DataContext>
-                <local:MainViewModel />
+                <viewModels:LoginViewModel />
         </Window.DataContext>
         <Grid>
                 <Grid.ColumnDefinitions>
@@ -16,15 +17,35 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="1">
-                        <Label Content = "UserName :"/>
-                        <TextBox Text="{Binding UserName}"/>
-                        <Label Content = "Password :"/>
-                        <PasswordBox local:PasswordHelper.Attach="True" local:PasswordHelper.Password="{Binding Path=Password, Mode=OneWayToSource}" />
-                        <Button Content="Login" Click="ButtonBase_OnClick" />
-                        <Button Content="Login2" Command="{ Binding ClickCommand}" />
-                        <Button Content="Regirser"></Button>
+                
+                <StackPanel >
                         
+                        <Label Content="UserName :"/>
+                        <TextBox Text="{Binding UserName ,BindsDirectlyToSource=True}"/>
+                        <Label Content="Password :"/>
+                        <TextBox Text="{Binding Password}"/>
+                        <Label Content="{Binding Test}"/>
+
+                        <Button Content="L\Test" IsEnabled="{Binding CanLogin}"/>
+                        <Button Content="Login" Command="{Binding LoginCommand}"/>
                 </StackPanel>
+                
+                
+                
+                
+                
+                
+                
+                
+                <!-- <StackPanel Grid.Column="1"> -->
+                <!--         <Label Content = "UserName :"/> -->
+                <!--         <TextBox Text="{Binding UserName}"/> -->
+                <!--         <Label Content = "Password :"/> -->
+                <!--         <PasswordBox local:PasswordHelper.Attach="True" local:PasswordHelper.Password="{Binding Path=Password, Mode=OneWayToSource}" /> -->
+                <!--         <Button Content="Login" Click="ButtonBase_OnClick" /> -->
+                <!--         <Button Content="Login2" Command="{ Binding ClickCommand}" /> -->
+                <!--         <Button Content="Regirser"></Button> -->
+                <!--          -->
+                <!-- </StackPanel> -->
         </Grid>
 </Window>
