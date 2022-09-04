@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace English.UI;
+namespace English.UI.Views;
 
 public partial class Login : Page
 {

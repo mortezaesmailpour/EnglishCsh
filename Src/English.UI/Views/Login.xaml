@@ -1,4 +1,4 @@
-<Page x:Class="English.UI.Login"
+<Page x:Class="English.UI.Views.Login"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,4 +10,15 @@
     <Page.DataContext>
         <viewModels:LoginViewModel />
     </Page.DataContext>
+    <StackPanel Width="280" >
+                        
+        <Label Content="UserName :"/>
+        <TextBox Text="{Binding UserName ,BindsDirectlyToSource=True}"/>
+        <Label Content="Password :"/>
+        <PasswordBox local:PasswordHelper.Attach="True" local:PasswordHelper.Password="{Binding Path=Password, Mode=OneWayToSource}" />
+                        
+        <Label Content="{Binding Test}"/>
+
+        <Button Content="Login" Command="{Binding LoginCommand}"/>
+    </StackPanel>
 </Page>
