@@ -29,7 +29,7 @@ public class MainViewModel : BaseViewModel
         Subjects = new ObservableCollection<SubjectModel>();
         Objects = new ObservableCollection<ObjectModel>();
         Tenses = new ObservableCollection<TenseModel>();
-        Verb verb = new Verb("play");
+        Verb verb = new Verb("fallow");
 
         var subject = SubjectPersonalPronouns.She;   
         var @object = ObjectPersonalPronouns.Him;

@@ -45,6 +45,22 @@ public class Verb : BaseVerb, IVerb
         Tense.ConditionalContinuous => ConditionalContinuous(),
         Tense.ConditionalPerfect => ConditionalPerfect(),
         Tense.ConditionalPerfectContinuous => ConditionalPerfectContinuous(),
+        Tense.PassivePresentSimple => PassiveSimplePresent(),
+        Tense.PassivePresentContinuous => PassivePresentContinuous(),
+        Tense.PassivePresentPerfect => PassivePresentPerfect(),
+        Tense.PassivePresentPerfectContinuous => PassivePresentPerfectContinuous(),
+        Tense.PassivePastSimple => SimplePast(),
+        Tense.PassivePastContinuous => PastContinuous(),
+        Tense.PassivePastPerfect => PastPerfect(),
+        Tense.PassivePastPerfectContinuous => PastPerfectContinuous(),
+        Tense.PassiveFutureSimple => SimpleFuture(),
+        Tense.PassiveFutureContinuous => FutureContinuous(),
+        Tense.PassiveFuturePerfect => FuturePerfect(),
+        Tense.PassiveFuturePerfectContinuous => FuturePerfectContinuous(),
+        Tense.PassiveConditionalSimple => SimpleConditional(),
+        Tense.PassiveConditionalContinuous => ConditionalContinuous(),
+        Tense.PassiveConditionalPerfect => ConditionalPerfect(),
+        Tense.PassiveConditionalPerfectContinuous => ConditionalPerfectContinuous(),
         _ => SimplePresent(),
     };
 
@@ -53,7 +69,8 @@ public class Verb : BaseVerb, IVerb
         SimplePresent(), PresentContinuous(), PresentPerfect(), PresentPerfectContinuous(),
         SimplePast(), PastContinuous(), PastPerfect(), PastPerfectContinuous(),
         SimpleFuture(), FutureContinuous(), FuturePerfect(), FuturePerfectContinuous(),
-        SimpleConditional(), ConditionalContinuous(), ConditionalPerfect(), ConditionalPerfectContinuous()
+        SimpleConditional(), ConditionalContinuous(), ConditionalPerfect(), ConditionalPerfectContinuous(),
+        PassiveSimplePresent(), PassivePresentContinuous(), PassivePresentPerfect(), PassivePresentPerfectContinuous(),
     };
     public PresentSimple SimplePresent() => new(BaseForm, PastSimple, PastParticiple);
     public PresentContinuous PresentContinuous() => new(BaseForm, PastSimple, PastParticiple);
@@ -71,4 +88,10 @@ public class Verb : BaseVerb, IVerb
     public ConditionalContinuous ConditionalContinuous() => new(BaseForm, PastSimple, PastParticiple);
     public ConditionalPerfect ConditionalPerfect() => new(BaseForm, PastSimple, PastParticiple);
     public ConditionalPerfectContinuous ConditionalPerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
+
+
+    public PassivePresentSimple PassiveSimplePresent() => new(BaseForm, PastSimple, PastParticiple);
+    public PassivePresentContinuous PassivePresentContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PassivePresentPerfect PassivePresentPerfect() => new(BaseForm, PastSimple, PastParticiple);
+    public PassivePresentPerfectContinuous PassivePresentPerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
 }
