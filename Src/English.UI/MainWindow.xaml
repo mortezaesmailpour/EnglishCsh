@@ -1,4 +1,4 @@
-﻿<Window x:Class="English.UI.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,29 +6,34 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:English.UI"
         xmlns:viewModels="clr-namespace:English.UI.ViewModels"
+        xmlns:Views="clr-namespace:English.UI.Views" x:Class="English.UI.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="280">
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>
     <Grid>
+
         <StackPanel Orientation="Vertical">
 
+            <Views:Subject Height="150" SubjectModel="hhh"/>
             <Label Content="Subjests"  />
             <ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Path=Subjects}"    
-                SelectedItem="{Binding Path=SelectedSubject}"  />
+                ItemsSource="{Binding Subjects}"    
+                SelectedItem="{Binding SelectedSubject}"  />
             <Label Content="Objests"  />
             <ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Path=Objects}"    
-                SelectedItem="{Binding Path=SelectedObject}"  />
+                ItemsSource="{Binding Objects}"    
+                SelectedItem="{Binding SelectedObject}"  />
             <Label Content="Tenses"  />
             <ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Path=Tenses}"    
-                SelectedItem="{Binding Path=SelectedTense}"  />
+                ItemsSource="{Binding Tenses}"    
+                SelectedItem="{Binding SelectedTense}"  />
             <Label Content="Actions"  />
             <Button Width="120" Content="Update" Command="{Binding UpdateCommand}"/>
             <Label Content="{Binding Result}"  />
+            <Label Content="{Binding Subject2}"  />
+
 
         </StackPanel>
     </Grid>

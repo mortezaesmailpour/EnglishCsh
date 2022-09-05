@@ -13,12 +13,10 @@
     <StackPanel Width="280" >
                         
         <Label Content="UserName :"/>
-        <TextBox Text="{Binding UserName ,BindsDirectlyToSource=True}"/>
+        <TextBox Text="{Binding UserName}"/>
         <Label Content="Password :"/>
         <PasswordBox local:PasswordHelper.Attach="True" local:PasswordHelper.Password="{Binding Path=Password, Mode=OneWayToSource}" />
                         
-        <Label Content="{Binding Test}"/>
-
         <Button Content="Login" Command="{Binding LoginCommand}"/>
     </StackPanel>
 </Page>

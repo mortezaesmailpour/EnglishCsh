@@ -1,6 +1,8 @@
 ﻿using English.Pronouns;
 using English.SentenceElements;
 using English.UI.Commands;
+using English.UI.Models;
+using English.UI.Views;
 using English.Verbs;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,12 @@ namespace English.UI.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
+    public string Subject2
+{
+        get => _subject2;
+        set => SetField(ref _subject2, value);
+    }
+    private string _subject2;
     public ObservableCollection<SubjectModel> Subjects { get; init; }
     public SubjectModel SelectedSubject { get; set; }
     public ObservableCollection<ObjectModel> Objects { get; init; }
@@ -50,21 +58,11 @@ public class MainViewModel : BaseViewModel
 
     public void UpdateResult()
     {
-        var sbj = SelectedSubject?.Subject;
+        var sbj = SelectedSubject?.BaseSubject;
         var obj = SelectedObject?.Object;
         var vrb = SelectedTense?.Verb;
         Result = $"{sbj} {vrb.ToStringFor(sbj)} {obj}";
         OnPropertyChanged(nameof(Result));
-    }
-}
-public class SubjectModel
-{
-    public ISubject Subject { get; set; }
-    public string Name { get; set; }
-    public SubjectModel(ISubject subject)
-    {
-        Subject = subject;
-        Name = Subject.ToString() ?? "NULL";
     }
 }
     public class ObjectModel
