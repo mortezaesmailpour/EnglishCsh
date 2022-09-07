@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml.Linq;
 
@@ -18,11 +20,11 @@ namespace English.UI.ViewModels;
 public class MainViewModel : BaseViewModel
 {
     public string Subject2
-{
+    {
         get => _subject2;
         set => SetField(ref _subject2, value);
     }
-    private string _subject2;
+    private string _subject2 = "salam";
     public ObservableCollection<SubjectModel> Subjects { get; init; }
     public SubjectModel SelectedSubject { get; set; }
     public ObservableCollection<ObjectModel> Objects { get; init; }

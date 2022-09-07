@@ -15,8 +15,8 @@
     <Grid>
 
         <StackPanel Orientation="Vertical">
-
-            <Views:Subject Height="150" SubjectModel="hhh"/>
+            <Label Content= "{Binding Subject2}"/>
+            <Views:Subject Height="150" SetText = "xxx"/>
             <Label Content="Subjests"  />
             <ComboBox DisplayMemberPath="Name"
                 ItemsSource="{Binding Subjects}"    
@@ -32,7 +32,6 @@
             <Label Content="Actions"  />
             <Button Width="120" Content="Update" Command="{Binding UpdateCommand}"/>
             <Label Content="{Binding Result}"  />
-            <Label Content="{Binding Subject2}"  />
 
 
         </StackPanel>

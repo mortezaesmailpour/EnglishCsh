@@ -22,16 +22,39 @@ namespace English.UI.Views
     /// </summary>
     public partial class Subject : UserControl
     {
-        private string _subject ;
+        private string _subject;
         public string SubjectModel
         {
             get { return _subject; }
-            set { 
+            set
+            {
                 _subject = value;
-                _viewModel.Name = _subject;
+                _viewModel.Name = _subject.ToString();
             }
         }
         private readonly SubjectViewModel _viewModel;
+
+        public static readonly DependencyProperty SetTextProperty =
+           DependencyProperty.Register("SetText", typeof(string), typeof(Subject), new
+              PropertyMetadata("", new PropertyChangedCallback(OnSetTextChanged)));
+
+        public string SetText
+        {
+            get { return (string)GetValue(SetTextProperty); }
+            set { SetValue(SetTextProperty, value); }
+        }
+
+        private static void OnSetTextChanged(DependencyObject d,
+           DependencyPropertyChangedEventArgs e)
+        {
+            Subject subjectControl = d as Subject;
+            subjectControl.OnSetTextChanged(e);
+        }
+
+        private void OnSetTextChanged(DependencyPropertyChangedEventArgs e)
+        {
+            _viewModel.Name =  e.NewValue.ToString();
+        }
         public Subject()
         {
             InitializeComponent();
