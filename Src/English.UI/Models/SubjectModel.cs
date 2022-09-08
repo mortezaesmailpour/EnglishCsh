@@ -1,6 +1,4 @@
-﻿using English.SentenceElements;
-
-namespace English.UI.Models;
+﻿namespace English.UI.Models;
 
 public class SubjectModel
 {

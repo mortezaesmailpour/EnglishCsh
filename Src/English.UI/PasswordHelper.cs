@@ -1,6 +1,3 @@
-using System.Windows;
-using System.Windows.Controls;
-
 namespace English.UI;
 
 public static class PasswordHelper

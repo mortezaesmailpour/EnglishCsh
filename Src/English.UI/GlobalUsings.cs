@@ -1,0 +1,17 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using English.Pronouns;
+global using English.UI.Models;
+global using System.Collections.ObjectModel;
+global using System.ComponentModel;
+global using System.Runtime.CompilerServices;
+global using System.Windows;
+global using System.Windows.Controls;
+global using English.SentenceElements;
+global using System.Windows.Input;
+global using English.UI.Commands;
+global using English.UI.Views;
+global using English.Verbs;

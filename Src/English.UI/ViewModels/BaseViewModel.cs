@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-
 namespace English.UI.ViewModels;
 
 public class BaseViewModel : DependencyObject,INotifyPropertyChanged

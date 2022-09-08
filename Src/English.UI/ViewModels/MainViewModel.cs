@@ -1,21 +1,4 @@
-﻿using English.Pronouns;
-using English.SentenceElements;
-using English.UI.Commands;
-using English.UI.Models;
-using English.UI.Views;
-using English.Verbs;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Xml.Linq;
-
-namespace English.UI.ViewModels;
+﻿namespace English.UI.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {

@@ -1,13 +1,4 @@
-﻿using English.Pronouns;
-using English.UI.Models;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace English.UI.Views;
+﻿namespace English.UI.Views;
 
 public partial class Subject : UserControl, INotifyPropertyChanged
 {

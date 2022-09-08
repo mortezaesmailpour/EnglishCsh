@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" x:Name="userControl"
+             xmlns:viewModels="clr-namespace:English.UI.ViewModels"
+             mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid DataContext="{Binding ElementName=userControl}">
-        <StackPanel Width="280" >
-            <TextBlock Text="{Binding SelectedSubject.Name}"/>
-            <ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Subjects}"    
-                SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"  />
-        </StackPanel>
-    </Grid>
+    <!--<UserControl.DataContext>
+        <viewModels:SubjectViewModel />
+    </UserControl.DataContext>-->
+    <StackPanel Width="280" >
+        <TextBlock Text="{Binding SelectedSubject.Name}"/>
+        <ComboBox DisplayMemberPath="Name"
+            ItemsSource="{Binding Subjects}"    
+            SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"  />
+    </StackPanel>
 </UserControl>

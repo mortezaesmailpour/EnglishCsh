@@ -1,7 +1,4 @@
-﻿using English.SentenceElements;
-using System.Collections.Generic;
-
-namespace English.UI.Models;
+﻿namespace English.UI.Models;
 
 public class Subjects
 {
