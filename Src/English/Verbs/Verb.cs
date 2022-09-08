@@ -1,6 +1,4 @@
-using English.PersonGenderNumbers;
 using English.Persons;
-using English.SentenceElements;
 using English.Verbs.Conditional;
 using English.Verbs.Future;
 using English.Verbs.Past;
