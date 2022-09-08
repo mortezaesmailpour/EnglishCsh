@@ -6,22 +6,25 @@
              xmlns:local="clr-namespace:English.UI.Views"
              xmlns:viewModels="clr-namespace:English.UI.ViewModels"
              mc:Ignorable="d" 
+             x:Name="uc"
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <viewModels:VerbViewModel />
-    </UserControl.DataContext>
-    <StackPanel Width="280" >
-        <CheckBox IsChecked="{Binding IsContinuous}" Content="IsContinuous"/>
-        <CheckBox IsChecked="{Binding IsPerfect}" Content="IsPerfect"/>
-        <CheckBox IsChecked="{Binding IsPassive}" Content="IsPassive"/>
-        <StackPanel >
-            <RadioButton IsChecked="{Binding IsPresent}" Content="IsPresent"/>
-            <RadioButton IsChecked="{Binding IsPast}" Content="IsPast"/>
-            <RadioButton IsChecked="{Binding IsFuture}" Content="IsFuture"/>
-            <RadioButton IsChecked="{Binding IsConditional}" Content="IsConditional"/>
+    </UserControl.DataContext>-->
+    <Grid DataContext="{Binding ElementName=uc}">
+    <StackPanel>
+        <CheckBox IsChecked="{Binding IsContinuous}" Content="Continuous"/>
+        <CheckBox IsChecked="{Binding IsPerfect}" Content="Perfect"/>
+        <CheckBox IsChecked="{Binding IsPassive}" Content="Passive"/>
+        <StackPanel>
+            <RadioButton IsChecked="{Binding IsPresent}" Content="Present"/>
+            <RadioButton IsChecked="{Binding IsPast}" Content="Past"/>
+            <RadioButton IsChecked="{Binding IsFuture}" Content="Future"/>
+            <RadioButton IsChecked="{Binding IsConditional}" Content="Conditional"/>
         </StackPanel>
         <ComboBox DisplayMemberPath="Name"
             ItemsSource="{Binding Tenses}"    
             SelectedItem="{Binding SelectedTense, Mode=TwoWay}"  />
     </StackPanel>
+    </Grid>
 </UserControl>

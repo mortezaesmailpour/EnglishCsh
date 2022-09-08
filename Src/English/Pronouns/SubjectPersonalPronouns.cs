@@ -1,7 +1,3 @@
-using English.PersonGenderNumbers;
-using English.Persons;
-using English.SentenceElements;
-
 namespace English.Pronouns;
 
 public class SubjectPersonalPronouns : PersonalPronoun, ISubject
@@ -19,12 +15,6 @@ public class SubjectPersonalPronouns : PersonalPronoun, ISubject
         : base(person, number, gender)
     {
     }
-    //public SubjectPersonalPronouns(PersonGenderNumber p)
-    //    : base(p.Is(PersonGenderNumber.First)?Person.First:p.Is(PersonGenderNumber.Second)?Person.Second: Person.Third,
-    //        p.Is(PersonGenderNumber.Plural)?Number.Plural:Number.Singular, 
-    //        p.Is(PersonGenderNumber.Male)? Gender.Male: p.Is(PersonGenderNumber.Female)?Gender.Female: Gender.Neuter)
-    //{
-    //}
 
     public override string ToString() => Person switch
     {

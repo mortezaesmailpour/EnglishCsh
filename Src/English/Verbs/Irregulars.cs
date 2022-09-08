@@ -1,5 +1,3 @@
-using English.Verbs.Present;
-
 namespace English.Verbs;
 
 public class Irregulars

@@ -1,9 +1,3 @@
-using English.Persons;
-using English.Verbs.Conditional;
-using English.Verbs.Future;
-using English.Verbs.Past;
-using English.Verbs.Present;
-
 namespace English.Verbs;
 
 public class Verb : BaseVerb, IVerb

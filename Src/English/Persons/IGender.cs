@@ -1,4 +1,4 @@
-namespace English.PersonGenderNumbers;
+namespace English.Persons;
 
 public interface IGender
 {

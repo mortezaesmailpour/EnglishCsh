@@ -1,7 +1,4 @@
-﻿using English.PersonGenderNumbers;
-using English.Persons;
-
-namespace English.SentenceElements;
+﻿namespace English.SentenceElements;
 
 public class Subject : ISubject
 {

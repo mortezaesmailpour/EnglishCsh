@@ -1,6 +1,4 @@
-using English.Verbs;
-
-namespace English;
+namespace English.Verbs;
 
 public static class Extensions
 {

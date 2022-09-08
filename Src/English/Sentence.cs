@@ -1,7 +1,3 @@
-using English.SentenceElements;
-using English.Verbs;
-using IVerb = English.Verbs.IVerb;
-
 namespace English;
 
 public class Sentence : ISentence

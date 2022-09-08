@@ -1,4 +1,4 @@
-﻿using English.PersonGenderNumbers;
+﻿using English.Persons;
 using English.Pronouns;
 using English.SentenceElements;
 using English.Verbs;

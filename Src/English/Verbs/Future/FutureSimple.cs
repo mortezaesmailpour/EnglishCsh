@@ -1,5 +1,3 @@
-using English.Persons;
-
 namespace English.Verbs.Future;
 
 public class FutureSimple : Verb

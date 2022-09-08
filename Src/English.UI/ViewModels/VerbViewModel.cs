@@ -5,7 +5,6 @@ namespace English.UI.ViewModels;
 
 public class VerbViewModel : BaseViewModel
 {
-
     public bool IsContinuous
     {
         get => _isContinuous;
@@ -46,7 +45,6 @@ public class VerbViewModel : BaseViewModel
         }
     }
     private bool _isPassive;
-
 
     public bool IsPresent
     {

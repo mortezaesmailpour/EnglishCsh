@@ -1,6 +1,3 @@
-using English.PersonGenderNumbers;
-using English.Persons;
-
 namespace English.Pronouns;
 
 public abstract class PersonalPronoun : IPersonsGender
