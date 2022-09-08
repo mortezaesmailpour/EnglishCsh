@@ -19,14 +19,14 @@ namespace English.UI.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
-    public string Subject2
+    public SubjectModel SelectedSubject
     {
-        get => _subject2;
-        set => SetField(ref _subject2, value);
+        get => _selectedSubject;
+        set => SetField(ref _selectedSubject, value);
     }
-    private string _subject2 = "salam";
+    private SubjectModel _selectedSubject;
     public ObservableCollection<SubjectModel> Subjects { get; init; }
-    public SubjectModel SelectedSubject { get; set; }
+    //public SubjectModel SelectedSubject { get; set; }
     public ObservableCollection<ObjectModel> Objects { get; init; }
     public ObjectModel SelectedObject { get; set; }
     public ObservableCollection<TenseModel> Tenses { get; init; }

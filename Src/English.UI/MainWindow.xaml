@@ -15,12 +15,15 @@
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <Label Content= "{Binding Subject2}"/>
-            <Views:Subject Height="150" SetText = "xxx"/>
+            <TextBlock Text= "{Binding SelectedSubject.Name}"/>
+            <!--<TextBox x:Name="test" Background="Aqua" Text= "{Binding Subject2 ,Mode=TwoWay}"/>
+            <Views:Subject Height="150" 
+                              SelectedSubject ="{Binding Subject2, Mode=TwoWay}"/>-->
             <Label Content="Subjests"  />
-            <ComboBox DisplayMemberPath="Name"
+            <Views:Subject Height="150" SelectedSubject="{Binding SelectedSubject, Mode=TwoWay}" />
+            <!--<ComboBox DisplayMemberPath="Name"
                 ItemsSource="{Binding Subjects}"    
-                SelectedItem="{Binding SelectedSubject}"  />
+                SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"  />
             <Label Content="Objests"  />
             <ComboBox DisplayMemberPath="Name"
                 ItemsSource="{Binding Objects}"    
@@ -31,7 +34,7 @@
                 SelectedItem="{Binding SelectedTense}"  />
             <Label Content="Actions"  />
             <Button Width="120" Content="Update" Command="{Binding UpdateCommand}"/>
-            <Label Content="{Binding Result}"  />
+            <Label Content="{Binding Result}"  />-->
 
 
         </StackPanel>

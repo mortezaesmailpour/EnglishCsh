@@ -1,68 +1,39 @@
-﻿using English.UI.Models;
-using English.UI.ViewModels;
-using System;
-using System.Collections.Generic;
+﻿using English.Pronouns;
+using English.UI.Models;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace English.UI.Views
+namespace English.UI.Views;
+
+public partial class Subject : UserControl, INotifyPropertyChanged
 {
-    /// <summary>
-    /// Interaction logic for Subject.xaml
-    /// </summary>
-    public partial class Subject : UserControl
+    public ObservableCollection<SubjectModel> Subjects { get; init; }
+    public SubjectModel SelectedSubject
     {
-        private string _subject;
-        public string SubjectModel
-        {
-            get { return _subject; }
-            set
-            {
-                _subject = value;
-                _viewModel.Name = _subject.ToString();
-            }
-        }
-        private readonly SubjectViewModel _viewModel;
-
-        public static readonly DependencyProperty SetTextProperty =
-           DependencyProperty.Register("SetText", typeof(string), typeof(Subject), new
-              PropertyMetadata("", new PropertyChangedCallback(OnSetTextChanged)));
-
-        public string SetText
-        {
-            get { return (string)GetValue(SetTextProperty); }
-            set { SetValue(SetTextProperty, value); }
-        }
-
-        private static void OnSetTextChanged(DependencyObject d,
-           DependencyPropertyChangedEventArgs e)
-        {
-            Subject subjectControl = d as Subject;
-            subjectControl.OnSetTextChanged(e);
-        }
-
-        private void OnSetTextChanged(DependencyPropertyChangedEventArgs e)
-        {
-            _viewModel.Name =  e.NewValue.ToString();
-        }
-        public Subject()
-        {
-            InitializeComponent();
-            _viewModel = (SubjectViewModel)this.DataContext;
-        }
+        get => (SubjectModel)GetValue(SubjectModelProperty);
+        set => SetValue(SubjectModelProperty, value);
     }
-
-    public class SubjectModel2
+    public Subject()
     {
+        InitializeComponent();
+        Subjects = new ObservableCollection<SubjectModel>();
+        foreach (var item in SubjectPersonalPronouns.All)
+            Subjects.Add(new SubjectModel(item));
+        SelectedSubject = Subjects.FirstOrDefault();
+        OnPropertyChanged(nameof(Subjects));
+        OnPropertyChanged(nameof(SelectedSubject));
+    }
+    public event PropertyChangedEventHandler? PropertyChanged;
+    
+    public static readonly DependencyProperty SubjectModelProperty =
+        DependencyProperty.Register("SelectedSubject", typeof(object),
+          typeof(Subject), new PropertyMetadata(""));
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
