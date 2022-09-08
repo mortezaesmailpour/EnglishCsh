@@ -21,6 +21,8 @@
                               SelectedSubject ="{Binding Subject2, Mode=TwoWay}"/>-->
             <Label Content="Subjests"  />
             <Views:Subject Height="150" SelectedSubject="{Binding SelectedSubject, Mode=TwoWay}" />
+            <Label Content="Tenses"  />
+            <Views:VerbUserControl Height="150"  />
             <!--<ComboBox DisplayMemberPath="Name"
                 ItemsSource="{Binding Subjects}"    
                 SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"  />
