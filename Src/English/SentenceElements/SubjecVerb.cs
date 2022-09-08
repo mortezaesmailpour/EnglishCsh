@@ -1,3 +1,4 @@
+using English.Persons;
 using English.Verbs;
 
 namespace English.SentenceElements;
@@ -16,6 +17,6 @@ public class SubjecVerb : ISentenceElement
     public static Sentence operator +(SubjecVerb a, IObject b) => new (a.Subject,a.Verb,b);
     public override string ToString()
     {
-        return $"{Subject} {Verb.ToStringFor(Subject)}";
+        return $"{Subject} {Verb.ToStringFor(Subject as IPersons)}";
     }
 }

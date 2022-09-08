@@ -1,3 +1,5 @@
+using English.PersonGenderNumbers;
+using English.Persons;
 using English.SentenceElements;
 using English.Verbs.Conditional;
 using English.Verbs.Future;
@@ -10,7 +12,7 @@ public class Verb : BaseVerb, IVerb
 {
     public Tense Tense { get; }
 
-    public virtual string ToStringFor(ISubject subject) => ChangeTense(Tense).ToStringFor(subject);
+    public virtual string ToStringFor(IPersons subject) => ChangeTense(Tense).ToStringFor(subject);
 
     public Verb(string baseForm, string? pastSimple=null, string? pastParticiple = null, Tense? tense = null) : base(baseForm, pastSimple,
         pastParticiple)

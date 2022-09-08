@@ -1,4 +1,5 @@
 using English.PersonGenderNumbers;
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Present;
@@ -10,7 +11,7 @@ public class PassivePresentSimple : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => subject.Person switch
+    public override string ToStringFor(IPersons  subject) => subject.Person switch
     {
         Person.First when subject.Number == Number.Singular => "am being " + PastParticiple,
         Person.Third when subject.Number == Number.Singular => "is being " + PastParticiple,

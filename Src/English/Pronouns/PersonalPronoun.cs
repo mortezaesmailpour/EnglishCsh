@@ -1,13 +1,13 @@
 using English.PersonGenderNumbers;
+using English.Persons;
 
 namespace English.Pronouns;
 
-public abstract class PersonalPronoun : IPersonGenderNumber
+public abstract class PersonalPronoun : IPersonsGender
 {
     public Gender Gender { get; set; }
     public Person Person { get; set; }
     public Number Number { get; set; }
-    
     protected PersonalPronoun(Person gerson, Number number = Number.Plural, Gender gender = Gender.Neuter)
     {
         Gender = gender;

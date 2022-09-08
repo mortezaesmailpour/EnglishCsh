@@ -1,6 +1,6 @@
 namespace English.PersonGenderNumbers;
 
-public enum PersonGenderNumber
+public enum PersozzzzzzzzzznGenderNumber
 {
     First = 1,
     Second = 2,

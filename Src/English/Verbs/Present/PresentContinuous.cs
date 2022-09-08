@@ -1,4 +1,5 @@
 using English.PersonGenderNumbers;
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Present;
@@ -9,7 +10,7 @@ public class PresentContinuous : Verb
         : base(baseForm, pastSimple, pastParticiple, Tense.PresentContinuous)
     {
     }
-    public override string ToStringFor(ISubject subject) => subject.Person switch
+    public override string ToStringFor(IPersons subject) => subject.Person switch
     {
         Person.First when subject.Number == Number.Singular => "am " + Gerund,
         Person.Third when subject.Number == Number.Singular => "is " + Gerund,

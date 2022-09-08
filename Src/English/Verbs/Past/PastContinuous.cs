@@ -1,4 +1,5 @@
 using English.PersonGenderNumbers;
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Past;
@@ -10,7 +11,7 @@ public class PastContinuous : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => subject.Number switch
+    public override string ToStringFor(IPersons subject) => subject.Number switch
     {
         Number.Singular => "was " + Gerund,
         _ => "were " + Gerund,

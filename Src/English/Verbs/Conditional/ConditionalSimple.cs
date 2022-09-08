@@ -1,3 +1,4 @@
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Conditional;
@@ -9,5 +10,5 @@ public class ConditionalSimple : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => "would " + BaseForm;
+    public override string ToStringFor(IPersons  subject) => "would " + BaseForm;
 }

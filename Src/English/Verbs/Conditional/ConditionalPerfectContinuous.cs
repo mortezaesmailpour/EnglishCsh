@@ -1,3 +1,4 @@
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Conditional;
@@ -9,5 +10,5 @@ public class ConditionalPerfectContinuous : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => "would have been " + Gerund;
+    public override string ToStringFor(IPersons  subject) => "would have been " + Gerund;
 }

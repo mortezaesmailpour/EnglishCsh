@@ -1,4 +1,5 @@
 using English.PersonGenderNumbers;
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Future;
@@ -10,5 +11,5 @@ public class FutureContinuous : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => "will be " + Gerund;
+    public override string ToStringFor(IPersons  subject) => "will be " + Gerund;
 }

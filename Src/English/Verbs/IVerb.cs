@@ -1,3 +1,4 @@
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs;
@@ -14,5 +15,5 @@ public interface IVerb
     public Verb Continuous();
     public Verb Perfect();
     
-    string ToStringFor(ISubject subject);
+    string ToStringFor(IPersons subject);
 }

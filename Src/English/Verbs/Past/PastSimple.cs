@@ -1,3 +1,4 @@
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Past;
@@ -9,5 +10,5 @@ public class PastSimple : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => PastSimple;
+    public override string ToStringFor(IPersons  subject) => PastSimple;
 }

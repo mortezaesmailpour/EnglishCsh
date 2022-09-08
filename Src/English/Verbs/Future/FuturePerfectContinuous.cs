@@ -1,3 +1,4 @@
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Future;
@@ -9,5 +10,5 @@ public class FuturePerfectContinuous : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => "will have been " + Gerund;
+    public override string ToStringFor(IPersons  subject) => "will have been " + Gerund;
 }

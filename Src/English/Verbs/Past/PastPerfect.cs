@@ -1,3 +1,4 @@
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Past;
@@ -9,5 +10,5 @@ public class PastPerfect : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => "had " + PastParticiple;
+    public override string ToStringFor(IPersons  subject) => "had " + PastParticiple;
 }

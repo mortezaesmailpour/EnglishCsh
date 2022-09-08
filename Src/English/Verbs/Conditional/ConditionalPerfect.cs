@@ -1,4 +1,5 @@
 using English.PersonGenderNumbers;
+using English.Persons;
 using English.SentenceElements;
 
 namespace English.Verbs.Conditional;
@@ -10,7 +11,7 @@ public class ConditionalPerfect : Verb
     {
     }
 
-    public override string ToStringFor(ISubject subject) => subject.Person switch
+    public override string ToStringFor(IPersons  subject) => subject.Person switch
     {
         Person.Third when subject.Number == Number.Singular => "would has " + PastParticiple,
         _ => "would have " + PastParticiple,
