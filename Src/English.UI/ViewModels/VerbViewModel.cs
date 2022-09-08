@@ -99,7 +99,6 @@ public class VerbViewModel : BaseViewModel
 
     TenseModel GetTenseModel(Tense tense) => Tenses.FirstOrDefault(x => tense == x.Verb.Tense) ?? throw new NullReferenceException($"{tense} does not contain Tenses.");
 
-    //================
     public ObservableCollection<TenseModel> Tenses { get; init; }
     private TenseModel _selectedTense;
     public TenseModel SelectedTense
@@ -111,9 +110,17 @@ public class VerbViewModel : BaseViewModel
             _isContinuous = tense.Is(Tense.Continuous);
             _isPerfect = tense.Is(Tense.Perfect);
             _isPassive = tense.Is(Tense.Passive);
+            _isPresent = tense.Is(Tense.Present);
+            _isPast = tense.Is(Tense.Past);
+            _isFuture = tense.Is(Tense.Future);
+            _isConditional = tense.Is(Tense.Conditional);
             OnPropertyChanged(nameof(IsContinuous));
             OnPropertyChanged(nameof(IsPerfect));
             OnPropertyChanged(nameof(IsPassive));
+            OnPropertyChanged(nameof(IsPresent));
+            OnPropertyChanged(nameof(IsPast));
+            OnPropertyChanged(nameof(IsFuture));
+            OnPropertyChanged(nameof(IsConditional));
             SetField(ref _selectedTense, value);
         }
     }

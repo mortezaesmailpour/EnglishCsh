@@ -73,6 +73,9 @@ public class Verb : BaseVerb, IVerb
         SimpleFuture(), FutureContinuous(), FuturePerfect(), FuturePerfectContinuous(),
         SimpleConditional(), ConditionalContinuous(), ConditionalPerfect(), ConditionalPerfectContinuous(),
         PassiveSimplePresent(), PassivePresentContinuous(), PassivePresentPerfect(), PassivePresentPerfectContinuous(),
+        PassiveSimplePast(), PassivePastContinuous(), PassivePastPerfect(), PassivePastPerfectContinuous(),
+        PassiveSimpleFuture(), PassiveFutureContinuous(), PassiveFuturePerfect(), PassiveFuturePerfectContinuous(),
+        PassiveSimpleConditional(), PassiveConditionalContinuous(), PassiveConditionalPerfect(), PassiveConditionalPerfectContinuous(),
     };
     public PresentSimple SimplePresent() => new(BaseForm, PastSimple, PastParticiple);
     public PresentContinuous PresentContinuous() => new(BaseForm, PastSimple, PastParticiple);
@@ -96,4 +99,16 @@ public class Verb : BaseVerb, IVerb
     public PassivePresentContinuous PassivePresentContinuous() => new(BaseForm, PastSimple, PastParticiple);
     public PassivePresentPerfect PassivePresentPerfect() => new(BaseForm, PastSimple, PastParticiple);
     public PassivePresentPerfectContinuous PassivePresentPerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PassivePastSimple PassiveSimplePast() => new(BaseForm, PastSimple, PastParticiple);
+    public PassivePastContinuous PassivePastContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PassivePastPerfect PassivePastPerfect() => new(BaseForm, PastSimple, PastParticiple);
+    public PassivePastPerfectContinuous PassivePastPerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PassiveFutureSimple PassiveSimpleFuture() => new(BaseForm, PastSimple, PastParticiple);
+    public PassiveFutureContinuous PassiveFutureContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PassiveFuturePerfect PassiveFuturePerfect() => new(BaseForm, PastSimple, PastParticiple);
+    public PassiveFuturePerfectContinuous PassiveFuturePerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PassiveConditionalSimple PassiveSimpleConditional() => new(BaseForm, PastSimple, PastParticiple);
+    public PassiveConditionalContinuous PassiveConditionalContinuous() => new(BaseForm, PastSimple, PastParticiple);
+    public PassiveConditionalPerfect PassiveConditionalPerfect() => new(BaseForm, PastSimple, PastParticiple);
+    public PassiveConditionalPerfectContinuous PassiveConditionalPerfectContinuous() => new(BaseForm, PastSimple, PastParticiple);
 }
