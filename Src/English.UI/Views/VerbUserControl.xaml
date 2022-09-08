@@ -14,6 +14,12 @@
         <CheckBox IsChecked="{Binding IsContinuous}" Content="IsContinuous"/>
         <CheckBox IsChecked="{Binding IsPerfect}" Content="IsPerfect"/>
         <CheckBox IsChecked="{Binding IsPassive}" Content="IsPassive"/>
+        <StackPanel >
+            <RadioButton IsChecked="{Binding IsPresent}" Content="IsPresent"/>
+            <RadioButton IsChecked="{Binding IsPast}" Content="IsPast"/>
+            <RadioButton IsChecked="{Binding IsFuture}" Content="IsFuture"/>
+            <RadioButton IsChecked="{Binding IsConditional}" Content="IsConditional"/>
+        </StackPanel>
         <ComboBox DisplayMemberPath="Name"
             ItemsSource="{Binding Tenses}"    
             SelectedItem="{Binding SelectedTense, Mode=TwoWay}"  />

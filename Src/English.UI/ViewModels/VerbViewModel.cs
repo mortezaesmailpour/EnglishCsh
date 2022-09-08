@@ -1,4 +1,5 @@
 using English.Persons;
+using English.Verbs;
 
 namespace English.UI.ViewModels;
 
@@ -17,7 +18,6 @@ public class VerbViewModel : BaseViewModel
             SetField(ref _isContinuous, value);
         }
     }
-
     private bool _isContinuous;
     public bool IsPerfect
     {
@@ -32,6 +32,7 @@ public class VerbViewModel : BaseViewModel
         }
     }
     private bool _isPerfect;
+
     public bool IsPassive
     {
         get => _isPassive;
@@ -46,30 +47,57 @@ public class VerbViewModel : BaseViewModel
     }
     private bool _isPassive;
 
-    TenseModel GetTenseModel(Tense tense) => tense switch
+
+    public bool IsPresent
     {
-        Tense.PresentSimple => Tenses[0],
-        Tense.PresentContinuous => Tenses[1],
-        Tense.PresentPerfect => Tenses[2],
-        Tense.PresentPerfectContinuous => Tenses[3],
-        Tense.PastSimple => Tenses[4],
-        Tense.PastContinuous => Tenses[5],
-        Tense.PastPerfect => Tenses[6],
-        Tense.PastPerfectContinuous => Tenses[7],
-        Tense.FutureSimple => Tenses[8],
-        Tense.FutureContinuous => Tenses[9],
-        Tense.FuturePerfect => Tenses[10],
-        Tense.FuturePerfectContinuous => Tenses[11],
-        Tense.ConditionalSimple => Tenses[12],
-        Tense.ConditionalContinuous => Tenses[13],
-        Tense.ConditionalPerfect => Tenses[14],
-        Tense.ConditionalPerfectContinuous => Tenses[15],
-        Tense.PassivePresentSimple => Tenses[16],
-        Tense.PassivePresentContinuous => Tenses[17],
-        Tense.PassivePresentPerfect => Tenses[18],
-        Tense.PassivePresentPerfectContinuous => Tenses[19],
-        _ => Tenses[0],
-    };
+        get => _isPresent;
+        set
+        {
+            var tense = SelectedTense.Verb.Tense;
+            if (value)
+                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Present);
+            SetField(ref _isPresent, value);
+        }
+    }
+    private bool _isPresent;
+    public bool IsPast
+    {
+        get => _isPast;
+        set
+        {
+            var tense = SelectedTense.Verb.Tense;
+            if (value)
+                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Past);
+            SetField(ref _isPast, value);
+        }
+    }
+    private bool _isPast;
+    public bool IsFuture
+    {
+        get => _isFuture;
+        set
+        {
+            var tense = SelectedTense.Verb.Tense;
+            if (value)
+                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Future);
+            SetField(ref _isFuture, value);
+        }
+    }
+    private bool _isFuture;
+    public bool IsConditional
+    {
+        get => _isConditional;
+        set
+        {
+            var tense = SelectedTense.Verb.Tense;
+            if (value)
+                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Conditional);
+            SetField(ref _isConditional, value);
+        }
+    }
+    private bool _isConditional;
+
+    TenseModel GetTenseModel(Tense tense) => Tenses.FirstOrDefault(x => tense == x.Verb.Tense) ?? throw new NullReferenceException($"{tense} does not contain Tenses.");
 
     //================
     public ObservableCollection<TenseModel> Tenses { get; init; }

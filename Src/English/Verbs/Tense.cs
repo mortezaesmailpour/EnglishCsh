@@ -10,6 +10,7 @@ public enum Tense
 
     Times = Present | Past | Future | Conditional,
     Modes = Continuous | Perfect,
+    Forms = Modes | Passive,
 
     Continuous = 16,
     Perfect = 32,
