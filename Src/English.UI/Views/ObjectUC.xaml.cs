@@ -5,7 +5,7 @@ namespace English.UI.Views;
 public partial class ObjectUC : UserControl, INotifyPropertyChanged
 {
     public ObservableCollection<ObjectModel> Objects { get; init; }
-    public ObjectModel Object
+    public ObjectModel ObjectM
     {
         get => (ObjectModel)GetValue(ObjectModelProperty);
         set => SetValue(ObjectModelProperty, value);
@@ -23,19 +23,7 @@ public partial class ObjectUC : UserControl, INotifyPropertyChanged
         }
     }
     private ObjectModel _selectedObject;
-    public ObjectModel SelectedSubject
-    {
-        get => _selectedSubject;
-        set
-        {
-            if (_selectedSubject != value)
-            {
-                _selectedSubject = value;
-                OnPropertyChanged(nameof(SelectedSubject));
-            }
-        }
-    }
-    public ObjectModel _selectedSubject;
+    
     private bool _isSingular = true;
     public bool IsSingular
     {
@@ -45,10 +33,11 @@ public partial class ObjectUC : UserControl, INotifyPropertyChanged
             if (_isSingular != value)
             {
                 _isSingular = value;
-                if (SelectedObject?.BaseObject.Person != Person.Second)
-                    SelectedObject = Objects.FirstOrDefault(x => 
+                var person = SelectedObject.BaseObject.Person;
+                if (person != Person.Second)
+                    SelectedObject = Objects.First(x => 
                     x.BaseObject.Number == (value ? Number.Singular : Number.Plural) &&
-                    x.BaseObject.Person == SelectedObject.BaseObject.Person);
+                    x.BaseObject.Person == person);
                 OnPropertyChanged(nameof(IsSingular));
             }
         }
@@ -60,32 +49,25 @@ public partial class ObjectUC : UserControl, INotifyPropertyChanged
         Objects = new ObservableCollection<ObjectModel>();
         foreach (var item in ObjectPersonalPronouns.All)
             Objects.Add(new ObjectModel(item));
-
-        SelectedObject = Objects.FirstOrDefault();
+        SelectedObject = Objects.First();
+        ObjectM = SelectedObject;
         OnPropertyChanged(nameof(Objects));
         OnPropertyChanged(nameof(SelectedObject));
+        OnPropertyChanged(nameof(ObjectM));
     }
     public event PropertyChangedEventHandler? PropertyChanged;
     
     public static readonly DependencyProperty ObjectModelProperty =
-        DependencyProperty.Register("Object", typeof(object),
-          typeof(Object), new PropertyMetadata(""));
+        DependencyProperty.Register(nameof(ObjectM), typeof(object),
+          typeof(ObjectUC), new PropertyMetadata(""));
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-        //IsSingular = true;
-        //OnPropertyChanged(nameof(IsSingular));
-        SelectedObject = Objects[3];
-        OnPropertyChanged(nameof(SelectedObject));
-    }
-
     private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        IsSingular = SelectedObject?.BaseObject.Number == Number.Singular;
-        OnPropertyChanged(nameof(SelectedObject));
+        ObjectM = SelectedObject;
+        OnPropertyChanged(nameof(ObjectM));
     }
 }

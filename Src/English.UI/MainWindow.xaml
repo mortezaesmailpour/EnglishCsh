@@ -19,6 +19,7 @@
             <TextBlock Text= "{Binding Object.Name}"/>
 
             <Views:Subject Height="150" SubjectM="{Binding Subject ,Mode=TwoWay}" />
+            <Views:ObjectUC Height="150" ObjectM="{Binding Object ,Mode=TwoWay}" />
             <!--<TextBox x:Name="test" Background="Aqua" Text= "{Binding Subject2 ,Mode=TwoWay}"/>
             <Views:Subject Height="150" 
                               SelectedSubject ="{Binding Subject2, Mode=TwoWay}"/>
