@@ -17,32 +17,15 @@
         <StackPanel Orientation="Vertical">
             <TextBlock Text= "{Binding Subject.Name}"/>
             <TextBlock Text= "{Binding Object.Name}"/>
+            <TextBlock Text= "{Binding Verb.Name}"/>
 
             <Views:Subject Height="150" SubjectM="{Binding Subject ,Mode=TwoWay}" />
+            <Views:VerbUC Height="150" VerbM="{Binding Verb ,Mode=TwoWay}" />
             <Views:ObjectUC Height="150" ObjectM="{Binding Object ,Mode=TwoWay}" />
-            <!--<TextBox x:Name="test" Background="Aqua" Text= "{Binding Subject2 ,Mode=TwoWay}"/>
-            <Views:Subject Height="150" 
-                              SelectedSubject ="{Binding Subject2, Mode=TwoWay}"/>
-            <Label Content="Subjests"  />
-            <Views:Subject Height="150" SelectedSubject="{Binding Subject, Mode=TwoWay}" />
-            <Label Content="Objests"  />
-            <Views:Object Height="150" SelectedObject="{Binding Object, Mode=TwoWay}" />-->
-            <Label Content="Tenses"  />
-            <Views:VerbUserControl Height="150"  />
-            <!--<ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Subjects}"    
-                SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"  />
-            <Label Content="Objests"  />
-            <ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Objects}"    
-                SelectedItem="{Binding SelectedObject}"  />
-            <Label Content="Tenses"  />
-            <ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Tenses}"    
-                SelectedItem="{Binding SelectedVerb}"  />
-            <Label Content="Actions"  />
+            
+            
             <Button Width="120" Content="Update" Command="{Binding UpdateCommand}"/>
-            <Label Content="{Binding Result}"  />-->
+            <Label Content="{Binding Result}"  />
 
 
         </StackPanel>

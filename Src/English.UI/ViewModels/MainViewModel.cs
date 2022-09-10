@@ -5,19 +5,32 @@ public class MainViewModel : BaseViewModel
     public SubjectModel Subject
     {
         get => _subject;
-        set => SetField(ref _subject, value);
+        set
+        {
+            SetField(ref _subject, value);
+            UpdateResult();
+        }
+        
     }
     private SubjectModel _subject;
     public ObjectModel Object
     {
         get => _object;
-        set => SetField(ref _object, value);
+        set
+        {
+            SetField(ref _object, value);
+            UpdateResult();
+        }
     }
     private ObjectModel _object;
     public VerbModel Verb
     {
         get => _verb;
-        set => SetField(ref _verb, value);
+        set
+        {
+            SetField(ref _verb, value);
+            UpdateResult();
+        }
     }
     public VerbModel _verb;
     public ICommand UpdateCommand { get; }
@@ -37,7 +50,10 @@ public class MainViewModel : BaseViewModel
         var sbj = Subject?.BaseSubject;
         var obj = Object?.BaseObject;
         var vrb = Verb?.BaseVerb;
-        Result = $"{sbj} {vrb.ToStringFor(sbj)} {obj}";
-        OnPropertyChanged(nameof(Result));
+        if (vrb != null)
+        {
+            Result = $"{sbj} {vrb.ToStringFor(sbj)} {obj}";
+            OnPropertyChanged(nameof(Result));
+        }
     }
 }
