@@ -19,12 +19,76 @@ public partial class Subject : UserControl, INotifyPropertyChanged
             if (_selectedSubject != value)
             {
                 _selectedSubject = value;
+                IsFirst = _selectedSubject.BaseSubject.Person == Person.First;
+                IsSecond = _selectedSubject.BaseSubject.Person == Person.Second;
+                IsThird = _selectedSubject.BaseSubject.Person == Person.Third;
+                IsSingular = _selectedSubject.BaseSubject.Number == Number.Singular;
+                IsPlural = _selectedSubject.BaseSubject.Number == Number.Plural;
+                //IsMale = _selectedSubject.BaseSubject.Gender == Gender.Male;
+                //IsFemale = _selectedSubject.BaseSubject.Gender == Gender.Female;
+                //IsNeuter = _selectedSubject.BaseSubject.Gender == Gender.Neuter;
                 OnPropertyChanged(nameof(SelectedSubject));
             }
         }
     }
     public SubjectModel _selectedSubject;
-    private bool _isSingular = true;
+    public string Text
+    {
+        get => _text;
+        set
+        {
+            if (_text != value)
+            {
+                _text = value;
+                OnPropertyChanged(nameof(Text));
+            }
+        }
+    }
+    private string _text = "";
+
+    public bool IsFirst
+    {
+        get => _isFirst;
+        set
+        {
+            _isFirst = value;
+            var bs = SelectedSubject.BaseSubject;
+            if (value)
+                SelectedSubject = Subjects.First(x =>
+                x.BaseSubject.Number == bs.Number &&
+                x.BaseSubject.Person == Person.First);
+            OnPropertyChanged(nameof(IsFirst));
+        }
+    }
+    private bool _isFirst;
+    public bool IsSecond
+    {
+        get => _isSecond;
+        set
+        {
+            _isSecond = value;
+            if (value)
+                SelectedSubject = Subjects.First(x => x.BaseSubject.Person == Person.Second);
+            OnPropertyChanged(nameof(IsSecond));
+        }
+    }
+    private bool _isSecond;
+    public bool IsThird
+    {
+        get => _isThird;
+        set
+        {
+            _isThird = value;
+            var bs = SelectedSubject.BaseSubject;
+            if (value)
+                SelectedSubject = Subjects.First(x =>
+                x.BaseSubject.Number == bs.Number &&
+                x.BaseSubject.Person == Person.Third);
+            OnPropertyChanged(nameof(IsThird));
+        }
+    }
+    private bool _isThird;
+
     public bool IsSingular
     {
         get => _isSingular;
@@ -34,14 +98,92 @@ public partial class Subject : UserControl, INotifyPropertyChanged
             {
                 _isSingular = value;
                 var bs = SelectedSubject.BaseSubject;
-                if (bs.Person != Person.Second)
+                if (value && bs.Person != Person.Second)
                     SelectedSubject = Subjects.First(x =>
-                    x.BaseSubject.Number == (value ? Number.Singular : Number.Plural) &&
+                    x.BaseSubject.Number == Number.Singular &&
                     x.BaseSubject.Person == bs.Person);
                 OnPropertyChanged(nameof(IsSingular));
             }
         }
     }
+    private bool _isSingular; 
+    public bool IsPlural
+    {
+        get => _isPlural;
+        set
+        {
+            if (_isPlural != value)
+            {
+                _isPlural = value;
+                var bs = SelectedSubject.BaseSubject;
+                if (value && bs.Person != Person.Second)
+                    SelectedSubject = Subjects.First(x =>
+                    x.BaseSubject.Number == Number.Plural &&
+                    x.BaseSubject.Person == bs.Person);
+                OnPropertyChanged(nameof(IsPlural));
+            }
+        }
+    }
+    private bool _isPlural = true;
+
+
+    //public bool IsMale
+    //{
+    //    get => _isMale;
+    //    set
+    //    {
+    //        if (_isMale != value)
+    //        {
+    //            _isMale = value;
+    //            var bs = SelectedSubject.BaseSubject;
+    //            if (value && bs.Person == Person.Third && bs.Number == Number.Singular)
+    //                SelectedSubject = Subjects.First(x =>
+    //                x.BaseSubject.Gender == Gender.Male &&
+    //                x.BaseSubject.Number == Number.Singular &&
+    //                x.BaseSubject.Person == Person.Third);
+    //            OnPropertyChanged(nameof(IsMale));
+    //        }
+    //    }
+    //}
+    //private bool _isMale;
+    //public bool IsFemale
+    //{
+    //    get => _isFemale;
+    //    set
+    //    {
+    //        if (_isFemale != value)
+    //        {
+    //            _isFemale = value;
+    //            //var bs = SelectedSubject.BaseSubject;
+    //            //if (value && bs.Person == Person.Third && bs.Number == Number.Singular)
+    //            //    SelectedSubject = Subjects.First(x =>
+    //            //    x.BaseSubject.Gender == Gender.Female &&
+    //            //    x.BaseSubject.Number == Number.Singular &&
+    //            //    x.BaseSubject.Person == Person.Third);
+    //            OnPropertyChanged(nameof(IsFemale));
+    //        }
+    //    }
+    //}
+    //private bool _isFemale = true;
+    //public bool IsNeuter
+    //{
+    //    get => _isNeuter;
+    //    set
+    //    {
+    //        if (_isNeuter != value)
+    //        {
+    //            _isNeuter = value;
+    //            var bs = SelectedSubject.BaseSubject;
+    //            if (value && bs.Person == Person.Third && bs.Number == Number.Singular)
+    //                SelectedSubject = Subjects.First(x =>
+    //                x.BaseSubject.Gender == Gender.Neuter &&
+    //                x.BaseSubject.Number == Number.Singular &&
+    //                x.BaseSubject.Person == Person.Third);
+    //            OnPropertyChanged(nameof(IsNeuter));
+    //        }
+    //    }
+    //}
+    //private bool _isNeuter = true;
     public Subject()
     {
         InitializeComponent();

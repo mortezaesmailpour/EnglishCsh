@@ -143,7 +143,7 @@ public partial class VerbUC : UserControl, INotifyPropertyChanged
     {
         InitializeComponent();
         Verbs = new ObservableCollection<VerbModel>();
-        var verb = new Verb("fallow");
+        var verb = new Verb("write","wrote","written");
         foreach (var item in verb.AllTenses)
             Verbs.Add(new VerbModel(item));
         SelectedVerb = Verbs.First();

@@ -19,9 +19,9 @@
             <TextBlock Text= "{Binding Object.Name}"/>
             <TextBlock Text= "{Binding Verb.Name}"/>
 
-            <Views:Subject Height="150" SubjectM="{Binding Subject ,Mode=TwoWay}" />
-            <Views:VerbUC Height="150" VerbM="{Binding Verb ,Mode=TwoWay}" />
-            <Views:ObjectUC Height="150" ObjectM="{Binding Object ,Mode=TwoWay}" />
+            <Views:Subject Height="260" SubjectM="{Binding Subject ,Mode=TwoWay}" />
+            <Views:ObjectUC Height="60" ObjectM="{Binding Object ,Mode=TwoWay}" />
+            <Views:VerbUC Height="160" VerbM="{Binding Verb ,Mode=TwoWay}" />
             
             
             <Button Width="120" Content="Update" Command="{Binding UpdateCommand}"/>
