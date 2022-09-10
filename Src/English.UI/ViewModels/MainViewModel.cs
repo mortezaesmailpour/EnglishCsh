@@ -2,73 +2,42 @@
 
 public class MainViewModel : BaseViewModel
 {
-    public SubjectModel SelectedSubject
+    public SubjectModel Subject
     {
-        get => _selectedSubject;
-        set => SetField(ref _selectedSubject, value);
+        get => _subject;
+        set => SetField(ref _subject, value);
     }
-    private SubjectModel _selectedSubject;
-    public ObservableCollection<SubjectModel> Subjects { get; init; }
-    //public SubjectModel SelectedSubject { get; set; }
-    public ObservableCollection<ObjectModel> Objects { get; init; }
-    public ObjectModel SelectedObject { get; set; }
-    public ObservableCollection<TenseModel> Tenses { get; init; }
-    public TenseModel SelectedTense { get; set; }
+    private SubjectModel _subject;
+    public ObjectModel Object
+    {
+        get => _object;
+        set => SetField(ref _object, value);
+    }
+    private ObjectModel _object;
+    public VerbModel Verb
+    {
+        get => _verb;
+        set => SetField(ref _verb, value);
+    }
+    public VerbModel _verb;
     public ICommand UpdateCommand { get; }
     public string Result { get; private set; }
     public MainViewModel()
     {
         UpdateCommand = new CommandHandler(UpdateResult);
-        Subjects = new ObservableCollection<SubjectModel>();
-        Objects = new ObservableCollection<ObjectModel>();
-        Tenses = new ObservableCollection<TenseModel>();
-        Verb verb = new Verb("fallow");
-
-        var subject = SubjectPersonalPronouns.She;   
-        var @object = ObjectPersonalPronouns.Him;
-
-        foreach (var item in SubjectPersonalPronouns.All)
-            Subjects.Add(new SubjectModel(item));
-        SelectedSubject = Subjects.FirstOrDefault();
-
-        foreach (var item in ObjectPersonalPronouns.All)
-            Objects.Add(new ObjectModel(item));
-        SelectedObject = Objects.FirstOrDefault();
-
-        foreach (var item in verb.AllTenses)
-            Tenses.Add(new TenseModel(item));
-        SelectedTense = Tenses.FirstOrDefault();
+        var verb = new Verb("fallow");
+        Subject = new( SubjectPersonalPronouns.She);   
+        Object = new(ObjectPersonalPronouns.Him);
+        Verb = new(verb);
         UpdateResult();
     }
 
     public void UpdateResult()
     {
-        var sbj = SelectedSubject?.BaseSubject;
-        var obj = SelectedObject?.Object;
-        var vrb = SelectedTense?.Verb;
+        var sbj = Subject?.BaseSubject;
+        var obj = Object?.BaseObject;
+        var vrb = Verb?.BaseVerb;
         Result = $"{sbj} {vrb.ToStringFor(sbj)} {obj}";
         OnPropertyChanged(nameof(Result));
-    }
-}
-    public class ObjectModel
-    {
-        public IObject Object { get; set; }
-        public string Name { get; set; }
-        public ObjectModel(IObject @object)
-        {
-            Object = @object;
-            Name = Object.ToString() ?? "NULL";
-        }
-
-    }
-
-public class TenseModel
-{
-    public IVerb Verb { get; set; }
-    public string Name { get; set; }
-    public TenseModel(IVerb verb)
-    {
-        Verb = verb;
-        Name = verb.Tense.ToString() ?? "NULL";
     }
 }

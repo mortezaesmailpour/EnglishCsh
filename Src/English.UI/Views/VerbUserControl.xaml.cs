@@ -9,10 +9,10 @@ public partial class VerbUserControl : UserControl
         get => _isContinuous;
         set
         {
-            var tense = SelectedTense?.Verb.Tense ?? Tense.PresentSimple;
+            var tense = SelectedTense?.BaseVerb.Tense ?? Tense.PresentSimple;
             _ = value
-                ? SelectedTense = GetTenseModel(tense | Tense.Continuous)
-                : SelectedTense = GetTenseModel((tense & Tense.Times) | (tense & Tense.Passive) | (tense & Tense.Perfect));
+                ? SelectedTense = GetVerbModel(tense | Tense.Continuous)
+                : SelectedTense = GetVerbModel((tense & Tense.Times) | (tense & Tense.Passive) | (tense & Tense.Perfect));
             SetField(ref _isContinuous, value);
         }
     }
@@ -22,10 +22,10 @@ public partial class VerbUserControl : UserControl
         get => _isPerfect;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedTense.BaseVerb.Tense;
             _ = value
-                ? SelectedTense = GetTenseModel(tense | Tense.Perfect)
-                : SelectedTense = GetTenseModel((tense & Tense.Times) | (tense & Tense.Passive) | (tense & Tense.Continuous));
+                ? SelectedTense = GetVerbModel(tense | Tense.Perfect)
+                : SelectedTense = GetVerbModel((tense & Tense.Times) | (tense & Tense.Passive) | (tense & Tense.Continuous));
             SetField(ref _isPerfect, value);
         }
     }
@@ -36,10 +36,10 @@ public partial class VerbUserControl : UserControl
         get => _isPassive;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedTense.BaseVerb.Tense;
             _ = value
-                ? SelectedTense = GetTenseModel(tense | Tense.Passive)
-                : SelectedTense = GetTenseModel((tense & Tense.Times) | (tense & Tense.Perfect) | (tense & Tense.Continuous));
+                ? SelectedTense = GetVerbModel(tense | Tense.Passive)
+                : SelectedTense = GetVerbModel((tense & Tense.Times) | (tense & Tense.Perfect) | (tense & Tense.Continuous));
             SetField(ref _isPassive, value);
         }
     }
@@ -50,9 +50,9 @@ public partial class VerbUserControl : UserControl
         get => _isPresent;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedTense.BaseVerb.Tense;
             if (value)
-                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Present);
+                SelectedTense = GetVerbModel((tense & Tense.Forms) | Tense.Present);
             SetField(ref _isPresent, value);
         }
     }
@@ -62,9 +62,9 @@ public partial class VerbUserControl : UserControl
         get => _isPast;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedTense.BaseVerb.Tense;
             if (value)
-                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Past);
+                SelectedTense = GetVerbModel((tense & Tense.Forms) | Tense.Past);
             SetField(ref _isPast, value);
         }
     }
@@ -74,9 +74,9 @@ public partial class VerbUserControl : UserControl
         get => _isFuture;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedTense.BaseVerb.Tense;
             if (value)
-                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Future);
+                SelectedTense = GetVerbModel((tense & Tense.Forms) | Tense.Future);
             SetField(ref _isFuture, value);
         }
     }
@@ -86,23 +86,23 @@ public partial class VerbUserControl : UserControl
         get => _isConditional;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedTense.BaseVerb.Tense;
             if (value)
-                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Conditional);
+                SelectedTense = GetVerbModel((tense & Tense.Forms) | Tense.Conditional);
             SetField(ref _isConditional, value);
         }
     }
     private bool _isConditional;
 
-    TenseModel GetTenseModel(Tense tense) => Tenses.FirstOrDefault(x => tense == x.Verb.Tense) ?? throw new NullReferenceException($"{tense} does not contain Tenses.");
+    VerbModel GetVerbModel(Tense tense) => Tenses.FirstOrDefault(x => tense == x.BaseVerb.Tense) ?? throw new NullReferenceException($"{tense} does not contain Tenses.");
 
-    public ObservableCollection<TenseModel> Tenses { get; init; }
-    public TenseModel SelectedTense
+    public ObservableCollection<VerbModel> Tenses { get; init; }
+    public VerbModel SelectedTense
     {
         get => _selectedTense;
         set
         {
-            var tense = value.Verb.Tense;
+            var tense = value.BaseVerb.Tense;
             _isContinuous = tense.Is(Tense.Continuous);
             _isPerfect = tense.Is(Tense.Perfect);
             _isPassive = tense.Is(Tense.Passive);
@@ -120,14 +120,14 @@ public partial class VerbUserControl : UserControl
             SetField(ref _selectedTense, value);
         }
     }
-    private TenseModel _selectedTense;
+    private VerbModel _selectedTense;
     public VerbUserControl()
     {
         InitializeComponent();
-        Tenses = new ObservableCollection<TenseModel>();
+        Tenses = new ObservableCollection<VerbModel>();
         Verb verb = new Verb("fallow");
         foreach (var item in verb.AllTenses)
-            Tenses.Add(new TenseModel(item));
+            Tenses.Add(new VerbModel(item));
         SelectedTense = Tenses.FirstOrDefault();
         OnPropertyChanged(nameof(Tenses));
         OnPropertyChanged(nameof(SelectedTense));

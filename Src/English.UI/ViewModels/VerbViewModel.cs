@@ -10,10 +10,10 @@ public class VerbViewModel : BaseViewModel
         get => _isContinuous;
         set
         {
-            var tense = SelectedTense?.Verb.Tense ?? Tense.PresentSimple;
+            var tense = SelectedVerb?.BaseVerb.Tense ?? Tense.PresentSimple;
             _ = value
-                ? SelectedTense = GetTenseModel(tense | Tense.Continuous)
-                : SelectedTense = GetTenseModel((tense & Tense.Times) | (tense & Tense.Passive) | (tense & Tense.Perfect));
+                ? SelectedVerb = GetVerbModel(tense | Tense.Continuous)
+                : SelectedVerb = GetVerbModel((tense & Tense.Times) | (tense & Tense.Passive) | (tense & Tense.Perfect));
             SetField(ref _isContinuous, value);
         }
     }
@@ -23,10 +23,10 @@ public class VerbViewModel : BaseViewModel
         get => _isPerfect;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedVerb.BaseVerb.Tense;
             _ = value
-                ? SelectedTense = GetTenseModel(tense | Tense.Perfect)
-                : SelectedTense = GetTenseModel((tense & Tense.Times) | (tense & Tense.Passive) | (tense & Tense.Continuous));
+                ? SelectedVerb = GetVerbModel(tense | Tense.Perfect)
+                : SelectedVerb = GetVerbModel((tense & Tense.Times) | (tense & Tense.Passive) | (tense & Tense.Continuous));
             SetField(ref _isPerfect, value);
         }
     }
@@ -37,10 +37,10 @@ public class VerbViewModel : BaseViewModel
         get => _isPassive;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedVerb.BaseVerb.Tense;
             _ = value
-                ? SelectedTense = GetTenseModel(tense | Tense.Passive)
-                : SelectedTense = GetTenseModel((tense & Tense.Times) | (tense & Tense.Perfect) | (tense & Tense.Continuous));
+                ? SelectedVerb = GetVerbModel(tense | Tense.Passive)
+                : SelectedVerb = GetVerbModel((tense & Tense.Times) | (tense & Tense.Perfect) | (tense & Tense.Continuous));
             SetField(ref _isPassive, value);
         }
     }
@@ -51,9 +51,9 @@ public class VerbViewModel : BaseViewModel
         get => _isPresent;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedVerb.BaseVerb.Tense;
             if (value)
-                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Present);
+                SelectedVerb = GetVerbModel((tense & Tense.Forms) | Tense.Present);
             SetField(ref _isPresent, value);
         }
     }
@@ -63,9 +63,9 @@ public class VerbViewModel : BaseViewModel
         get => _isPast;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedVerb.BaseVerb.Tense;
             if (value)
-                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Past);
+                SelectedVerb = GetVerbModel((tense & Tense.Forms) | Tense.Past);
             SetField(ref _isPast, value);
         }
     }
@@ -75,9 +75,9 @@ public class VerbViewModel : BaseViewModel
         get => _isFuture;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedVerb.BaseVerb.Tense;
             if (value)
-                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Future);
+                SelectedVerb = GetVerbModel((tense & Tense.Forms) | Tense.Future);
             SetField(ref _isFuture, value);
         }
     }
@@ -87,24 +87,24 @@ public class VerbViewModel : BaseViewModel
         get => _isConditional;
         set
         {
-            var tense = SelectedTense.Verb.Tense;
+            var tense = SelectedVerb.BaseVerb.Tense;
             if (value)
-                SelectedTense = GetTenseModel((tense & Tense.Forms) | Tense.Conditional);
+                SelectedVerb = GetVerbModel((tense & Tense.Forms) | Tense.Conditional);
             SetField(ref _isConditional, value);
         }
     }
     private bool _isConditional;
 
-    TenseModel GetTenseModel(Tense tense) => Tenses.FirstOrDefault(x => tense == x.Verb.Tense) ?? throw new NullReferenceException($"{tense} does not contain Tenses.");
+    VerbModel GetVerbModel(Tense tense) => Tenses.FirstOrDefault(x => tense == x.BaseVerb.Tense) ?? throw new NullReferenceException($"{tense} does not contain Tenses.");
 
-    public ObservableCollection<TenseModel> Tenses { get; init; }
-    private TenseModel _selectedTense;
-    public TenseModel SelectedTense
+    public ObservableCollection<VerbModel> Tenses { get; init; }
+    private VerbModel _SelectedVerb;
+    public VerbModel SelectedVerb
     {
-        get => _selectedTense;
+        get => _SelectedVerb;
         set
         {
-            var tense = value.Verb.Tense;
+            var tense = value.BaseVerb.Tense;
             _isContinuous = tense.Is(Tense.Continuous);
             _isPerfect = tense.Is(Tense.Perfect);
             _isPassive = tense.Is(Tense.Passive);
@@ -119,19 +119,19 @@ public class VerbViewModel : BaseViewModel
             OnPropertyChanged(nameof(IsPast));
             OnPropertyChanged(nameof(IsFuture));
             OnPropertyChanged(nameof(IsConditional));
-            SetField(ref _selectedTense, value);
+            SetField(ref _SelectedVerb, value);
         }
     }
     public ICommand UpdateCommand { get; }
     public VerbViewModel()
     {
-        Tenses = new ObservableCollection<TenseModel>();
+        Tenses = new ObservableCollection<VerbModel>();
         Verb verb = new Verb("fallow");
         foreach (var item in verb.AllTenses)
-            Tenses.Add(new TenseModel(item));
-        SelectedTense = Tenses.FirstOrDefault();
+            Tenses.Add(new VerbModel(item));
+        SelectedVerb = Tenses.FirstOrDefault();
         OnPropertyChanged(nameof(Tenses));
-        OnPropertyChanged(nameof(SelectedTense));
+        OnPropertyChanged(nameof(SelectedVerb));
 
 
         UpdateCommand = new CommandHandler(Update);
@@ -145,6 +145,6 @@ public class VerbViewModel : BaseViewModel
     private string _name;
     public void Update()
     {
-        Name = SelectedTense.Verb.ToString();
+        Name = SelectedVerb.BaseVerb.ToString();
     }
 }
