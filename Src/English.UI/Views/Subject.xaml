@@ -18,12 +18,12 @@
             <RadioButton IsChecked="{Binding IsSingular}" Content="Singular"/>
             <RadioButton IsChecked="{Binding IsPlural}" Content="Plural"/>
         </StackPanel>
-        <!--<StackPanel>
+        <StackPanel IsEnabled="{Binding IsThirdAndSingular}">
             <TextBlock Text="Gender"/>
             <RadioButton IsChecked="{Binding IsMale}" Content="Male"/>
             <RadioButton IsChecked="{Binding IsFemale}" Content="Female"/>
-            <RadioButton IsChecked="{Binding IsNeuter}" Content="Neuter"/> 
-        </StackPanel>-->
+            <RadioButton IsChecked="{Binding IsNeuter}" Content="Neuter"/>
+        </StackPanel>
 
         <TextBox Text="{Binding Text}" IsEnabled="{Binding IsThird}" />
         
@@ -32,5 +32,7 @@
             ItemsSource="{Binding Subjects}"    
             SelectedItem="{Binding SelectedSubject, Mode=TwoWay}" 
                   SelectionChanged="ComboBox_SelectionChanged"/>
+
+        <TextBlock Text="{Binding Result}" />
     </StackPanel>
 </UserControl>
