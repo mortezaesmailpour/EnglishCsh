@@ -9,5 +9,9 @@ public class FuturePerfectContinuous : Verb
     {
     }
 
-    public override string ToStringFor(IPersons  subject) => "will have been " + Gerund;
+    public override string ToStringFor(IPersons subject) => subject.Person switch
+    {
+        Person.Third when subject.Number == Number.Singular => "will has been " + Gerund,
+        _ => "will have been " + Gerund,
+    };
 }

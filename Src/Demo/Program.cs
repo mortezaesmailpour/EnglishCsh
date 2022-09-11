@@ -14,8 +14,9 @@ Console.WriteLine("for all personal pronouns :");
 foreach (var pronoun in SubjectPersonalPronouns.All)
     Console.WriteLine((pronoun as ISubject) + verb + obj);
 foreach (var pronoun in ObjectPersonalPronouns.All)
-    Console.WriteLine(subject+ verb + (pronoun as IObject) );
+    Console.WriteLine(subject+ verb + pronoun);
     
 Console.WriteLine("for all tenses :");
 foreach (var v in verb.AllTenses)
     Console.WriteLine(subject + v + obj);
+

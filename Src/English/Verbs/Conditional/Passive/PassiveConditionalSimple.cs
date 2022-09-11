@@ -7,5 +7,5 @@ public class PassiveConditionalSimple : Verb
     {
     }
 
-    public override string ToStringFor(IPersons subject) => "would be" + PastParticiple;
+    public override string ToStringFor(IPersons subject) => "would be " + PastParticiple;
 }

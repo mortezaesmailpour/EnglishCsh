@@ -7,5 +7,9 @@ public class ConditionalPerfectContinuous : Verb
     {
     }
 
-    public override string ToStringFor(IPersons  subject) => "would have been " + Gerund;
+    public override string ToStringFor(IPersons subject) => subject.Person switch
+    {
+        Person.Third when subject.Number == Number.Singular => "would has been " + Gerund,
+        _ => "would have been " + Gerund,
+    };
 }
