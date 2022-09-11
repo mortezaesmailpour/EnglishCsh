@@ -13,8 +13,8 @@
             <RadioButton IsChecked="{Binding IsSecond}" Content="Second"/>
             <RadioButton IsChecked="{Binding IsThird}" Content="Third"/>
         </StackPanel>
-        <StackPanel>
-            <TextBlock Text="Number"/>
+        <StackPanel IsEnabled="{Binding IsFirstOrThird}">
+            <TextBlock Text="Number" />
             <RadioButton IsChecked="{Binding IsSingular}" Content="Singular"/>
             <RadioButton IsChecked="{Binding IsPlural}" Content="Plural"/>
         </StackPanel>

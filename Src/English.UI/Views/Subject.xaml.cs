@@ -32,6 +32,7 @@ public partial class Subject : UserControl, INotifyPropertyChanged
         }
     }
     public SubjectModel _selectedSubject;
+
     public string Text
     {
         get => _text;
@@ -46,6 +47,20 @@ public partial class Subject : UserControl, INotifyPropertyChanged
     }
     private string _text = "";
 
+    public bool IsFirstOrThird
+    {
+        get => _isFirstOrThird;
+        set
+        {
+            if (_isFirstOrThird != value)
+            {
+                _isFirstOrThird = value;
+                OnPropertyChanged(nameof(IsFirstOrThird));
+            }
+        }
+    }
+    private bool _isFirstOrThird;
+
     public bool IsFirst
     {
         get => _isFirst;
@@ -58,6 +73,8 @@ public partial class Subject : UserControl, INotifyPropertyChanged
                 x.BaseSubject.Number == bs.Number &&
                 x.BaseSubject.Person == Person.First);
             OnPropertyChanged(nameof(IsFirst));
+            IsFirstOrThird = IsFirst || IsThird;
+            //OnPropertyChanged(nameof(IsFirstOrThird));
         }
     }
     private bool _isFirst;
@@ -70,6 +87,7 @@ public partial class Subject : UserControl, INotifyPropertyChanged
             if (value)
                 SelectedSubject = Subjects.First(x => x.BaseSubject.Person == Person.Second);
             OnPropertyChanged(nameof(IsSecond));
+            IsFirstOrThird = IsFirst || IsThird;
         }
     }
     private bool _isSecond;
@@ -85,6 +103,7 @@ public partial class Subject : UserControl, INotifyPropertyChanged
                 x.BaseSubject.Number == bs.Number &&
                 x.BaseSubject.Person == Person.Third);
             OnPropertyChanged(nameof(IsThird));
+            IsFirstOrThird = IsFirst || IsThird;
         }
     }
     private bool _isThird;
