@@ -6,33 +6,33 @@
              mc:Ignorable="d" x:Name="uc"
              d:DesignHeight="140" d:DesignWidth="800">
     <StackPanel Width="280" DataContext="{Binding ElementName=uc}" >
-        <!--<TextBlock Text="{Binding SelectedSubject.Name}"/>-->
-        <StackPanel>
-            <TextBlock Text="Person"/>
-            <RadioButton IsChecked="{Binding IsFirst}" Content="First"/>
-            <RadioButton IsChecked="{Binding IsSecond}" Content="Second"/>
-            <RadioButton IsChecked="{Binding IsThird}" Content="Third"/>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel Margin="5">
+                <Label Content="Person"/>
+                <RadioButton IsChecked="{Binding IsFirst}" Content="First"/>
+                <RadioButton IsChecked="{Binding IsSecond}" Content="Second"/>
+                <RadioButton IsChecked="{Binding IsThird}" Content="Third"/>
+            </StackPanel>
+                <StackPanel  Margin="5" IsEnabled="{Binding IsFirstOrThird}">
+                <Label Content="Number" />
+                <RadioButton IsChecked="{Binding IsSingular}" Content="Singular"/>
+                <RadioButton IsChecked="{Binding IsPlural}" Content="Plural"/>
+            </StackPanel>
+            <StackPanel  Margin="5" IsEnabled="{Binding IsThirdAndSingular}">
+                <Label Content="Gender"/>
+                <RadioButton IsChecked="{Binding IsMale}" Content="Male"/>
+                <RadioButton IsChecked="{Binding IsFemale}" Content="Female"/>
+                <RadioButton IsChecked="{Binding IsNeuter}" Content="Neuter"/>
+            </StackPanel>
         </StackPanel>
-        <StackPanel IsEnabled="{Binding IsFirstOrThird}">
-            <TextBlock Text="Number" />
-            <RadioButton IsChecked="{Binding IsSingular}" Content="Singular"/>
-            <RadioButton IsChecked="{Binding IsPlural}" Content="Plural"/>
-        </StackPanel>
-        <StackPanel IsEnabled="{Binding IsThirdAndSingular}">
-            <TextBlock Text="Gender"/>
-            <RadioButton IsChecked="{Binding IsMale}" Content="Male"/>
-            <RadioButton IsChecked="{Binding IsFemale}" Content="Female"/>
-            <RadioButton IsChecked="{Binding IsNeuter}" Content="Neuter"/>
-        </StackPanel>
-
-        <TextBox Text="{Binding Text}" IsEnabled="{Binding IsThird}" />
-        
-        <CheckBox IsChecked="{Binding IsSingular}" Content="IsSingular"/>
-        <ComboBox DisplayMemberPath="Name"
+        <ComboBox  Margin="5" DisplayMemberPath="Name"
             ItemsSource="{Binding Subjects}"    
             SelectedItem="{Binding SelectedSubject, Mode=TwoWay}" 
                   SelectionChanged="ComboBox_SelectionChanged"/>
-
-        <TextBlock Text="{Binding Result}" />
+        <Label Content="[noun]" IsEnabled="{Binding IsThird}" />
+        <TextBox  Margin="5" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" 
+                  IsEnabled="{Binding IsNotFirstAndSingular}" />
+        <Label Content="Result :" IsEnabled="{Binding IsThird}" />
+        <Label Content="{Binding Result}" />
     </StackPanel>
 </UserControl>

@@ -19,27 +19,36 @@ public partial class Subject : UserControl, INotifyPropertyChanged
             if (_selectedSubject != value)
             {
                 _selectedSubject = value;
-                _isFirst = _selectedSubject.BaseSubject.Person == Person.First;
-                _isSecond = _selectedSubject.BaseSubject.Person == Person.Second;
-                _isThird = _selectedSubject.BaseSubject.Person == Person.Third;
-                _isSingular = _selectedSubject.BaseSubject.Number == Number.Singular;
-                _isPlural = _selectedSubject.BaseSubject.Number == Number.Plural;
-                _isMale = _selectedSubject.BaseSubject.Gender == Gender.Male;
-                _isFemale = _selectedSubject.BaseSubject.Gender == Gender.Female;
-                _isNeuter = _selectedSubject.BaseSubject.Gender == Gender.Neuter;
-                OnPropertyChanged(nameof(IsFirst));
-                OnPropertyChanged(nameof(IsSecond));
-                OnPropertyChanged(nameof(IsThird));
-                OnPropertyChanged(nameof(IsSingular));
-                OnPropertyChanged(nameof(IsPlural));
-                OnPropertyChanged(nameof(IsMale));
-                OnPropertyChanged(nameof(IsFemale));
-                OnPropertyChanged(nameof(IsNeuter));
-                OnPropertyChanged(nameof(SelectedSubject));
-                OnPropertyChanged(nameof(Result));
+                OnPropertyChanged();
+                UpdateView();
             }
         }
     }
+
+    private void UpdateView()
+    {
+        _isFirst = _selectedSubject.BaseSubject.Person == Person.First;
+        _isSecond = _selectedSubject.BaseSubject.Person == Person.Second;
+        _isThird = _selectedSubject.BaseSubject.Person == Person.Third;
+        _isSingular = _selectedSubject.BaseSubject.Number == Number.Singular;
+        _isPlural = _selectedSubject.BaseSubject.Number == Number.Plural;
+        _isMale = _selectedSubject.BaseSubject.Gender == Gender.Male;
+        _isFemale = _selectedSubject.BaseSubject.Gender == Gender.Female;
+        _isNeuter = _selectedSubject.BaseSubject.Gender == Gender.Neuter;
+        OnPropertyChanged(nameof(IsFirst));
+        OnPropertyChanged(nameof(IsSecond));
+        OnPropertyChanged(nameof(IsFirstOrThird));
+        OnPropertyChanged(nameof(IsThird));
+        OnPropertyChanged(nameof(IsSingular));
+        OnPropertyChanged(nameof(IsThirdAndSingular));
+        OnPropertyChanged(nameof(IsNotFirstAndSingular));
+        OnPropertyChanged(nameof(IsPlural));
+        OnPropertyChanged(nameof(IsMale));
+        OnPropertyChanged(nameof(IsFemale));
+        OnPropertyChanged(nameof(IsNeuter));
+        OnPropertyChanged(nameof(Result));
+    }
+
     public SubjectModel _selectedSubject;
 
     public string Text
@@ -52,14 +61,31 @@ public partial class Subject : UserControl, INotifyPropertyChanged
                 _text = value;
                 OnPropertyChanged(nameof(Text));
                 OnPropertyChanged(nameof(Result));
+                SubjectM = new(_selectedSubject.BaseSubject, Result);
+                OnPropertyChanged(nameof(SubjectM));
             }
         }
     }
     private string _text = "";
-    public string Result => _isThird && !string.IsNullOrEmpty(_text) ? _text : _selectedSubject?.ToString();
-    
+    public string? Result => string.IsNullOrWhiteSpace(_text) || (IsFirst && IsSingular)
+        ?
+         _selectedSubject?.ToString()
+        :
+            (IsFirst ?
+                _text.EndsWith(" and I") ? _text : _text + " and I"
+            : IsSecond ?
+                _text.StartsWith("you and ") ? _text : "you and " + _text
+            : _text)
+            + " (" + _selectedSubject?.ToString() + ")";
+    //     +
+    //+ " (" + _selectedSubject?.ToString() + ")";
+
+
     public bool IsFirstOrThird => _isFirst || _isThird;
     public bool IsThirdAndSingular  => _isThird && _isSingular;
+    public bool IsNotFirstAndSingular => !(_isFirst && _isSingular);
+
+    
 
     public bool IsFirst
     {
@@ -211,11 +237,13 @@ public partial class Subject : UserControl, INotifyPropertyChanged
         Subjects = new ObservableCollection<SubjectModel>();
         foreach (var item in SubjectPersonalPronouns.All)
             Subjects.Add(new SubjectModel(item));
-        SelectedSubject = Subjects.First();
-        SubjectM = SelectedSubject;
+        _selectedSubject = Subjects.First();
+        SubjectM = new(_selectedSubject.BaseSubject, Result);
         OnPropertyChanged(nameof(Subjects));
         OnPropertyChanged(nameof(SelectedSubject));
+        UpdateView();
         OnPropertyChanged(nameof(SubjectM));
+
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -230,7 +258,7 @@ public partial class Subject : UserControl, INotifyPropertyChanged
 
     private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        SubjectM = SelectedSubject;
+        SubjectM = new(_selectedSubject.BaseSubject, Result);
         OnPropertyChanged(nameof(SubjectM));
     }
 }
