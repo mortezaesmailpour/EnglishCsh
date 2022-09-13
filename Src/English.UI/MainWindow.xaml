@@ -19,11 +19,12 @@
             <TextBlock Text= "{Binding Object.Name}"/>
             <TextBlock Text= "{Binding Verb.Name}"/>
 
-            <Views:Subject Height="260" SubjectM="{Binding Subject ,Mode=TwoWay}" />
-            <Views:ObjectUC Height="260" ObjectM="{Binding Object ,Mode=TwoWay}" />
-            <Views:VerbUC Height="160" VerbM="{Binding Verb ,Mode=TwoWay}" />
-            
-            
+            <StackPanel Orientation="Horizontal">
+                <Views:SubjectUC SubjectM="{Binding Subject ,Mode=TwoWay}" />
+                <Views:ObjectUC ObjectM="{Binding Object ,Mode=TwoWay}" />
+            </StackPanel>
+
+            <Views:VerbUC VerbM="{Binding Verb ,Mode=TwoWay}" HorizontalAlignment="Left" />
             <Button Width="120" Content="Update" Command="{Binding UpdateCommand}"/>
             <Label Content="{Binding Result}"  />
 

@@ -1,9 +1,8 @@
 ﻿using English.Persons;
-using English.UI.ViewModels;
 
 namespace English.UI.Views;
 
-public partial class Subject : UserControl, INotifyPropertyChanged
+public partial class SubjectUC : UserControl, INotifyPropertyChanged
 {
     public ObservableCollection<SubjectModel> Subjects { get; init; }
     public SubjectModel SubjectM
@@ -231,7 +230,7 @@ public partial class Subject : UserControl, INotifyPropertyChanged
         }
     }
     private bool _isNeuter = true;
-    public Subject()
+    public SubjectUC()
     {
         InitializeComponent();
         Subjects = new ObservableCollection<SubjectModel>();
@@ -250,7 +249,7 @@ public partial class Subject : UserControl, INotifyPropertyChanged
     
     public static readonly DependencyProperty SubjectModelProperty =
         DependencyProperty.Register(nameof(SubjectM), typeof(object),
-          typeof(Subject), new PropertyMetadata(""));
+          typeof(SubjectUC), new PropertyMetadata(""));
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

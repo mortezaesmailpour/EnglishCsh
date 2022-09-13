@@ -5,21 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" x:Name="uc"
              d:DesignHeight="640" d:DesignWidth="800">
-    <StackPanel Width="280" DataContext="{Binding ElementName=uc}" >
-        <TextBlock Text="{Binding SelectedVerb.Name}"/>
-        <!--<CheckBox IsChecked="{Binding IsSingular}" Content="IsSingular"/>-->
-        <CheckBox IsChecked="{Binding IsContinuous}" Content="Continuous"/>
-        <CheckBox IsChecked="{Binding IsPerfect}" Content="Perfect"/>
-        <CheckBox IsChecked="{Binding IsPassive}" Content="Passive"/>
-        <StackPanel>
-            <RadioButton IsChecked="{Binding IsPresent}" Content="Present"/>
-            <RadioButton IsChecked="{Binding IsPast}" Content="Past"/>
-            <RadioButton IsChecked="{Binding IsFuture}" Content="Future"/>
-            <RadioButton IsChecked="{Binding IsConditional}" Content="Conditional"/>
-        </StackPanel>
-        <ComboBox DisplayMemberPath="Name"
+    <StackPanel DataContext="{Binding ElementName=uc}" >
+        <ComboBox Width="230" DisplayMemberPath="Name"
             ItemsSource="{Binding Verbs}"    
             SelectedItem="{Binding SelectedVerb, Mode=TwoWay}" 
                   SelectionChanged="ComboBox_SelectionChanged"/>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="6">
+                <RadioButton IsChecked="{Binding IsPresent}" Content="Present"/>
+                <RadioButton IsChecked="{Binding IsPast}" Content="Past"/>
+                <RadioButton IsChecked="{Binding IsFuture}" Content="Future"/>
+                <RadioButton IsChecked="{Binding IsConditional}" Content="Conditional"/>
+            </StackPanel>
+            <StackPanel  Margin="5">
+                <CheckBox Margin="3" IsChecked="{Binding IsContinuous}" Content="Continuous"/>
+                <CheckBox Margin="3" IsChecked="{Binding IsPerfect}" Content="Perfect"/>
+                <CheckBox Margin="3" IsChecked="{Binding IsPassive}" Content="Passive"/>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>
