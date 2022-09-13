@@ -20,7 +20,7 @@
             <TextBlock Text= "{Binding Verb.Name}"/>
 
             <Views:Subject Height="260" SubjectM="{Binding Subject ,Mode=TwoWay}" />
-            <Views:ObjectUC Height="60" ObjectM="{Binding Object ,Mode=TwoWay}" />
+            <Views:ObjectUC Height="260" ObjectM="{Binding Object ,Mode=TwoWay}" />
             <Views:VerbUC Height="160" VerbM="{Binding Verb ,Mode=TwoWay}" />
             
             

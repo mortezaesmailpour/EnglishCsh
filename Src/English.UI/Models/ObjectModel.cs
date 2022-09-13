@@ -3,10 +3,10 @@
 public class ObjectModel : BaseModel
 {
     public IObject BaseObject { get; set; }
-    public ObjectModel(IObject baseObject)
+    public ObjectModel(IObject baseObject, string? name = null)
     {
         BaseObject = baseObject;
-        Name = baseObject.ToString() ?? "NULL";
+        Name = name ?? baseObject.ToString() ?? "NULL";
     }
 
 }

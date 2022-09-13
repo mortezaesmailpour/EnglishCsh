@@ -29,10 +29,10 @@
             ItemsSource="{Binding Subjects}"    
             SelectedItem="{Binding SelectedSubject, Mode=TwoWay}" 
                   SelectionChanged="ComboBox_SelectionChanged"/>
-        <Label Content="[noun]" IsEnabled="{Binding IsThird}" />
-        <TextBox  Margin="5" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" 
-                  IsEnabled="{Binding IsNotFirstAndSingular}" />
-        <Label Content="Result :" IsEnabled="{Binding IsThird}" />
+        <Label Content="[noun]" IsEnabled="{Binding IsNotFirstAndSingular}"/>
+        <TextBox  Margin="5"  IsEnabled="{Binding IsNotFirstAndSingular}"
+                  Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Result :"/>
         <Label Content="{Binding Result}" />
     </StackPanel>
 </UserControl>
