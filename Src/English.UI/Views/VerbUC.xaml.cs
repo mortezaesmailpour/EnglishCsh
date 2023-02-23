@@ -54,7 +54,7 @@ public partial class VerbUC : UserControl, INotifyPropertyChanged
             {
                 _selectedTense = value;
                 OnPropertyChanged(nameof(SelectedTense));
-                UpdateView(value.BaseVerb.Tense);
+                UpdateView();
             }
         }
     }
@@ -68,7 +68,7 @@ public partial class VerbUC : UserControl, INotifyPropertyChanged
             {
                 _selectedVerb = value;
                 OnPropertyChanged(nameof(SelectedVerb));
-                UpdateView(value.BaseVerb.Tense);
+                UpdateView();
             }
         }
     }
@@ -78,18 +78,19 @@ public partial class VerbUC : UserControl, INotifyPropertyChanged
     {
         VerbM = new VerbModel(SelectedVerb.BaseVerb.ChangeTense(SelectedTense.BaseVerb.Tense));
         OnPropertyChanged(nameof(VerbM));
-        UpdateView(VerbM.BaseVerb.Tense);
+        UpdateView();
     }
 
     private void Verb_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         VerbM = new VerbModel(SelectedVerb.BaseVerb.ChangeTense(Tense.ConditionalPerfect));
         OnPropertyChanged(nameof(VerbM));
-        UpdateView(VerbM.BaseVerb.Tense);
+        UpdateView();
     }
 
-    public void UpdateView(Tense tense)
+    public void UpdateView()
     {
+        var tense = _selectedTense.BaseVerb.Tense;
         _isContinuous = tense.Is(Tense.Continuous);
         _isPerfect = tense.Is(Tense.Perfect);
         _isPassive = tense.Is(Tense.Passive);

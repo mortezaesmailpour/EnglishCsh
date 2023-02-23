@@ -105,6 +105,7 @@ public class VerbViewModel : BaseViewModel
         set
         {
             var tense = value.BaseVerb.Tense;
+            var tense2 = _SelectedVerb.BaseVerb.Tense;
             _isContinuous = tense.Is(Tense.Continuous);
             _isPerfect = tense.Is(Tense.Perfect);
             _isPassive = tense.Is(Tense.Passive);
