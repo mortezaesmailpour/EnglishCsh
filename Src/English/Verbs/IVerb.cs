@@ -3,14 +3,15 @@ namespace English.Verbs;
 public interface IVerb
 {
     Tense Tense { get; }
-    public Verb Present();
-    public Verb Past();
-    public Verb Future();
-    public Verb Conditional();
+    public IVerb ChangeTense(Tense tense);
+    public IVerb Present();
+    public IVerb Past();
+    public IVerb Future();
+    public IVerb Conditional();
 
-    public Verb Simple();
-    public Verb Continuous();
-    public Verb Perfect();
+    public IVerb Simple();
+    public IVerb Continuous();
+    public IVerb Perfect();
     
     string ToStringFor(IPersons subject);
 }

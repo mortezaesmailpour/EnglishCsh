@@ -8,7 +8,7 @@
         xmlns:viewModels="clr-namespace:English.UI.ViewModels"
         xmlns:Views="clr-namespace:English.UI.Views" x:Class="English.UI.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="280">
+        Title="MainWindow" Height="480" Width="780">
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>

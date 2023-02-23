@@ -12,16 +12,16 @@ public class Verb : BaseVerb, IVerb
         Tense = tense ?? Tense.PresentSimple;
     }
 
-    public Verb Present() => ChangeTense((Tense & Tense.Modes) | Tense.Present);
-    public Verb Past() => ChangeTense((Tense & Tense.Modes) | Tense.Past);
-    public Verb Future() => ChangeTense((Tense & Tense.Modes) | Tense.Future);
-    public Verb Conditional() => ChangeTense((Tense & Tense.Modes) | Tense.Conditional);
+    public IVerb Present() => ChangeTense((Tense & Tense.Modes) | Tense.Present);
+    public IVerb Past() => ChangeTense((Tense & Tense.Modes) | Tense.Past);
+    public IVerb Future() => ChangeTense((Tense & Tense.Modes) | Tense.Future);
+    public IVerb Conditional() => ChangeTense((Tense & Tense.Modes) | Tense.Conditional);
 
-    public Verb Simple() => ChangeTense(Tense & Tense.Times);
-    public Verb Continuous() => ChangeTense(Tense | Tense.Continuous);
-    public Verb Perfect() => ChangeTense(Tense | Tense.Perfect);
+    public IVerb Simple() => ChangeTense(Tense & Tense.Times);
+    public IVerb Continuous() => ChangeTense(Tense | Tense.Continuous);
+    public IVerb Perfect() => ChangeTense(Tense | Tense.Perfect);
     
-    private Verb ChangeTense(Tense tense) => tense switch
+    public IVerb ChangeTense(Tense tense) => tense switch
     {
         Tense.PresentSimple => SimplePresent(),
         Tense.PresentContinuous => PresentContinuous(),
@@ -43,18 +43,18 @@ public class Verb : BaseVerb, IVerb
         Tense.PassivePresentContinuous => PassivePresentContinuous(),
         Tense.PassivePresentPerfect => PassivePresentPerfect(),
         Tense.PassivePresentPerfectContinuous => PassivePresentPerfectContinuous(),
-        Tense.PassivePastSimple => SimplePast(),
-        Tense.PassivePastContinuous => PastContinuous(),
-        Tense.PassivePastPerfect => PastPerfect(),
-        Tense.PassivePastPerfectContinuous => PastPerfectContinuous(),
-        Tense.PassiveFutureSimple => SimpleFuture(),
-        Tense.PassiveFutureContinuous => FutureContinuous(),
-        Tense.PassiveFuturePerfect => FuturePerfect(),
-        Tense.PassiveFuturePerfectContinuous => FuturePerfectContinuous(),
-        Tense.PassiveConditionalSimple => SimpleConditional(),
-        Tense.PassiveConditionalContinuous => ConditionalContinuous(),
-        Tense.PassiveConditionalPerfect => ConditionalPerfect(),
-        Tense.PassiveConditionalPerfectContinuous => ConditionalPerfectContinuous(),
+        Tense.PassivePastSimple => PassiveSimplePast(),
+        Tense.PassivePastContinuous => PassivePastContinuous(),
+        Tense.PassivePastPerfect => PassivePastPerfect(),
+        Tense.PassivePastPerfectContinuous => PassivePastPerfectContinuous(),
+        Tense.PassiveFutureSimple => PassiveSimpleFuture(),
+        Tense.PassiveFutureContinuous => PassiveFutureContinuous(),
+        Tense.PassiveFuturePerfect => PassiveFuturePerfect(),
+        Tense.PassiveFuturePerfectContinuous => PassiveFuturePerfectContinuous(),
+        Tense.PassiveConditionalSimple => PassiveSimpleConditional(),
+        Tense.PassiveConditionalContinuous => PassiveConditionalContinuous(),
+        Tense.PassiveConditionalPerfect => PassiveConditionalPerfect(),
+        Tense.PassiveConditionalPerfectContinuous => PassiveConditionalPerfectContinuous(),
         _ => SimplePresent(),
     };
 

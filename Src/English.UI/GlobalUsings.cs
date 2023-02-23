@@ -15,3 +15,4 @@ global using System.Windows.Input;
 global using English.UI.Commands;
 global using English.UI.Views;
 global using English.Verbs;
+global using English.Persons;

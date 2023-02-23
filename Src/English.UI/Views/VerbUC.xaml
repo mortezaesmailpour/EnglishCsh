@@ -6,22 +6,34 @@
              mc:Ignorable="d" x:Name="uc"
              d:DesignHeight="640" d:DesignWidth="800">
     <StackPanel DataContext="{Binding ElementName=uc}" >
-        <ComboBox Width="230" DisplayMemberPath="Name"
+        <Label Content="Select Verb" />
+        <ComboBox Margin="5,1" Width="230" DisplayMemberPath="Name"
             ItemsSource="{Binding Verbs}"    
             SelectedItem="{Binding SelectedVerb, Mode=TwoWay}" 
-                  SelectionChanged="ComboBox_SelectionChanged"/>
+                  SelectionChanged="Verb_SelectionChanged"/>
+        <Label Content="Select Tense" />
+        <ComboBox Width="230" DisplayMemberPath="Tense"
+            ItemsSource="{Binding Tenses}"    
+            SelectedItem="{Binding SelectedTense, Mode=TwoWay}" 
+                  SelectionChanged="Tense_SelectionChanged"/>
         <StackPanel Orientation="Horizontal">
-            <StackPanel Margin="6">
+            <StackPanel Margin="5">
                 <RadioButton IsChecked="{Binding IsPresent}" Content="Present"/>
                 <RadioButton IsChecked="{Binding IsPast}" Content="Past"/>
                 <RadioButton IsChecked="{Binding IsFuture}" Content="Future"/>
                 <RadioButton IsChecked="{Binding IsConditional}" Content="Conditional"/>
             </StackPanel>
             <StackPanel  Margin="5">
-                <CheckBox Margin="3" IsChecked="{Binding IsContinuous}" Content="Continuous"/>
-                <CheckBox Margin="3" IsChecked="{Binding IsPerfect}" Content="Perfect"/>
-                <CheckBox Margin="3" IsChecked="{Binding IsPassive}" Content="Passive"/>
+                <CheckBox Margin="2" IsChecked="{Binding IsContinuous}" Content="Continuous"/>
+                <CheckBox Margin="2" IsChecked="{Binding IsPerfect}" Content="Perfect"/>
+                <CheckBox Margin="2" IsChecked="{Binding IsPassive}" Content="Passive"/>
             </StackPanel>
         </StackPanel>
+
+        <ComboBox Width="230" DisplayMemberPath="Name"
+            ItemsSource="{Binding Tenses}"    
+            SelectedItem="{Binding SelectedTense, Mode=TwoWay}" 
+                  SelectionChanged="Tense_SelectionChanged"/>
+        
     </StackPanel>
 </UserControl>
