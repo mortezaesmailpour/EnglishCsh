@@ -13,9 +13,16 @@
             <controls:SubjectCV>
 
             </controls:SubjectCV>
+            
+            
             <controls:ObjectCV>
 
             </controls:ObjectCV>
+            
+            
+            <controls:VerbCV>
+
+            </controls:VerbCV>
             <Image
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"

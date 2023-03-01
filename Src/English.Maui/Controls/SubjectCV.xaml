@@ -32,9 +32,10 @@
                 <RadioButton IsChecked="{Binding IsNeuter}" Content="Neuter" />
             </StackLayout>
             <StackLayout Margin="5" IsVisible="{Binding IsNotFirstAndSingular}">
-                <Label Text="[noun]" />
+                <Label Text="[Noun]" />
                 <Entry WidthRequest="60"
                        Text="{Binding Text, UpdateSourceEventName=PropertyChanged}" />
+
             </StackLayout>
         </StackLayout>
         <StackLayout Orientation="Horizontal">

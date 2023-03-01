@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:English.Maui.Controls"
+             x:Class="English.Maui.Controls.VerbCV">
+
+
+    <ContentView.BindingContext>
+        <controls:VerbVM />
+    </ContentView.BindingContext>
+
+    <StackLayout Orientation="Horizontal" >
+        <StackLayout WidthRequest="400">
+            <Picker WidthRequest="250"
+                ItemsSource="{Binding Verbs}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedVerb, Mode=TwoWay}"
+                Title="Select Verb" />
+            <Picker WidthRequest="250"
+                ItemsSource="{Binding Tenses}"
+                ItemDisplayBinding="{Binding Tense}"
+                SelectedItem="{Binding SelectedTense, Mode=TwoWay}"
+                Title="Select Tense" />
+            <Picker WidthRequest="250"
+                ItemsSource="{Binding Tenses}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedTense, Mode=TwoWay}"
+                Title="Select Tense" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <StackLayout Margin="5">
+                <RadioButton IsChecked="{Binding IsPresent}" Content="Present"/>
+                <RadioButton IsChecked="{Binding IsPast}" Content="Past"/>
+                <RadioButton IsChecked="{Binding IsFuture}" Content="Future"/>
+                <RadioButton IsChecked="{Binding IsConditional}" Content="Conditional"/>
+            </StackLayout>
+            <StackLayout  Margin="5">
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox Margin="2" IsChecked="{Binding IsContinuous}"/>
+                    <Label Text="Continuous" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox Margin="2" IsChecked="{Binding IsPerfect}"/>
+                    <Label Text="Perfect" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox Margin="2" IsChecked="{Binding IsPassive}"/>
+                    <Label Text="Passive" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+    </StackLayout>
+</ContentView>

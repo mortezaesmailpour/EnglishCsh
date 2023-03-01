@@ -3,7 +3,7 @@ using English.UI.Models;
 
 namespace English.Maui.Controls;
 
-class ObjectVM : INotifyPropertyChanged
+class ObjectVM : BaseVM
 {
     public ObjectVM()
     {
@@ -224,10 +224,5 @@ class ObjectVM : INotifyPropertyChanged
         }
     }
     private bool _isNeuter = true;
-    public event PropertyChangedEventHandler PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 }
