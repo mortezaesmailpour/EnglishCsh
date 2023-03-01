@@ -6,3 +6,6 @@ global using System.Threading.Tasks;
 global using English.Pronouns;
 global using English.Verbs;
 global using English.SentenceElements;
+global using System.Collections.ObjectModel;
+global using System.ComponentModel;
+global using System.Runtime.CompilerServices;

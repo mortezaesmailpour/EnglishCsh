@@ -3,28 +3,28 @@ using English.UI.Models;
 
 namespace English.Maui.Controls;
 
-class SubjectVM : INotifyPropertyChanged
+class ObjectVM : INotifyPropertyChanged
 {
-    public SubjectVM()
+    public ObjectVM()
     {
-        Subjects = new ObservableCollection<SubjectModel>();
-        foreach (var item in SubjectPersonalPronouns.All)
-            Subjects.Add(new SubjectModel(item));
-        _selectedSubject = Subjects.First();
-        OnPropertyChanged(nameof(Subjects));
-        OnPropertyChanged(nameof(SelectedSubject));
-        UpdateView(_selectedSubject.BaseSubject);
+        Objects = new ObservableCollection<ObjectModel>();
+        foreach (var item in ObjectPersonalPronouns.All)
+            Objects.Add(new ObjectModel(item));
+        _selectedObject = Objects.First();
+        OnPropertyChanged(nameof(Objects));
+        OnPropertyChanged(nameof(SelectedObject));
+        UpdateView(_selectedObject.BaseObject);
     }
-    private void UpdateView(ISubject subject)
+    private void UpdateView(IObject @object)
     {
-        _isFirst = subject.Person == Person.First;
-        _isSecond = subject.Person == Person.Second;
-        _isThird = subject.Person == Person.Third;
-        _isSingular = subject.Number == Number.Singular;
-        _isPlural = subject.Number == Number.Plural;
-        _isMale = subject.Gender == Gender.Male;
-        _isFemale = subject.Gender == Gender.Female;
-        _isNeuter = subject.Gender == Gender.Neuter;
+        _isFirst = @object.Person == Person.First;
+        _isSecond = @object.Person == Person.Second;
+        _isThird = @object.Person == Person.Third;
+        _isSingular = @object.Number == Number.Singular;
+        _isPlural = @object.Number == Number.Plural;
+        _isMale = @object.Gender == Gender.Male;
+        _isFemale = @object.Gender == Gender.Female;
+        _isNeuter = @object.Gender == Gender.Neuter;
         OnPropertyChanged(nameof(IsFirst));
         OnPropertyChanged(nameof(IsSecond));
         OnPropertyChanged(nameof(IsFirstOrThird));
@@ -38,27 +38,28 @@ class SubjectVM : INotifyPropertyChanged
         OnPropertyChanged(nameof(IsNeuter));
         OnPropertyChanged(nameof(Result));
     }
-    public ObservableCollection<SubjectModel> Subjects { get; init; }
 
-    public SubjectModel SelectedSubject
+    public ObservableCollection<ObjectModel> Objects { get; init; }
+   
+    public ObjectModel SelectedObject
     {
-        get => _selectedSubject;
+        get => _selectedObject;
         set
         {
-            if (_selectedSubject != value)
+            if (_selectedObject != value)
             {
-                _selectedSubject = value;
-                OnPropertyChanged();
-                UpdateView(_selectedSubject.BaseSubject);
+                _selectedObject = value;
+                OnPropertyChanged(nameof(SelectedObject));
+                UpdateView(_selectedObject.BaseObject);
             }
         }
     }
-    private SubjectModel _selectedSubject;
+    private ObjectModel _selectedObject;
 
     public string? Result => string.IsNullOrWhiteSpace(_text) || (IsFirst && IsSingular)
-        ? _selectedSubject?.ToString()
-        : (IsFirst ? _text + " and I" : IsSecond ? "you and " + _text : _text) 
-        + " (" + _selectedSubject?.ToString() + ")";
+        ? _selectedObject?.ToString()
+        : (IsFirst ? _text + " and I" : IsSecond ? "you and " + _text : _text)
+        + " (" + _selectedObject?.ToString() + ")";
 
     public string Text
     {
@@ -85,11 +86,11 @@ class SubjectVM : INotifyPropertyChanged
         set
         {
             _isFirst = value;
-            var bs = SelectedSubject.BaseSubject;
+            var bs = SelectedObject.BaseObject;
             if (value)
-                SelectedSubject = Subjects.First(x =>
-                x.BaseSubject.Number == bs.Number &&
-                x.BaseSubject.Person == Person.First);
+                SelectedObject = Objects.First(x =>
+                x.BaseObject.Number == bs.Number &&
+                x.BaseObject.Person == Person.First);
             OnPropertyChanged(nameof(IsFirst));
             OnPropertyChanged(nameof(IsFirstOrThird));
             OnPropertyChanged(nameof(IsThirdAndSingular));
@@ -103,7 +104,7 @@ class SubjectVM : INotifyPropertyChanged
         {
             _isSecond = value;
             if (value)
-                SelectedSubject = Subjects.First(x => x.BaseSubject.Person == Person.Second);
+                SelectedObject = Objects.First(x => x.BaseObject.Person == Person.Second);
             OnPropertyChanged(nameof(IsSecond));
             OnPropertyChanged(nameof(IsFirstOrThird));
             OnPropertyChanged(nameof(IsThirdAndSingular));
@@ -116,11 +117,11 @@ class SubjectVM : INotifyPropertyChanged
         set
         {
             _isThird = value;
-            var bs = SelectedSubject.BaseSubject;
+            var bs = SelectedObject.BaseObject;
             if (value)
-                SelectedSubject = Subjects.First(x =>
-                x.BaseSubject.Number == bs.Number &&
-                x.BaseSubject.Person == Person.Third);
+                SelectedObject = Objects.First(x =>
+                x.BaseObject.Number == bs.Number &&
+                x.BaseObject.Person == Person.Third);
             OnPropertyChanged(nameof(IsThird));
             OnPropertyChanged(nameof(IsFirstOrThird));
             OnPropertyChanged(nameof(IsThirdAndSingular));
@@ -136,11 +137,11 @@ class SubjectVM : INotifyPropertyChanged
             if (_isSingular != value)
             {
                 _isSingular = value;
-                var bs = SelectedSubject.BaseSubject;
+                var bs = SelectedObject.BaseObject;
                 if (value && bs.Person != Person.Second)
-                    SelectedSubject = Subjects.First(x =>
-                    x.BaseSubject.Number == Number.Singular &&
-                    x.BaseSubject.Person == bs.Person);
+                    SelectedObject = Objects.First(x =>
+                    x.BaseObject.Number == Number.Singular &&
+                    x.BaseObject.Person == bs.Person);
                 OnPropertyChanged(nameof(IsSingular));
                 OnPropertyChanged(nameof(IsThirdAndSingular));
             }
@@ -155,11 +156,11 @@ class SubjectVM : INotifyPropertyChanged
             if (_isPlural != value)
             {
                 _isPlural = value;
-                var bs = SelectedSubject.BaseSubject;
+                var bs = SelectedObject.BaseObject;
                 if (value && bs.Person != Person.Second)
-                    SelectedSubject = Subjects.First(x =>
-                    x.BaseSubject.Number == Number.Plural &&
-                    x.BaseSubject.Person == bs.Person);
+                    SelectedObject = Objects.First(x =>
+                    x.BaseObject.Number == Number.Plural &&
+                    x.BaseObject.Person == bs.Person);
                 OnPropertyChanged(nameof(IsPlural));
                 OnPropertyChanged(nameof(IsThirdAndSingular));
             }
@@ -175,12 +176,12 @@ class SubjectVM : INotifyPropertyChanged
             if (_isMale != value)
             {
                 _isMale = value;
-                var bs = SelectedSubject?.BaseSubject;
+                var bs = SelectedObject?.BaseObject;
                 if (value)
-                    SelectedSubject = Subjects.First(x =>
-                    x.BaseSubject.Person == Person.Third &&
-                    x.BaseSubject.Number == Number.Singular &&
-                    x.BaseSubject.Gender == Gender.Male);
+                    SelectedObject = Objects.First(x =>
+                    x.BaseObject.Person == Person.Third &&
+                    x.BaseObject.Number == Number.Singular &&
+                    x.BaseObject.Gender == Gender.Male);
                 OnPropertyChanged(nameof(IsMale));
             }
         }
@@ -194,12 +195,12 @@ class SubjectVM : INotifyPropertyChanged
             if (_isFemale != value)
             {
                 _isFemale = value;
-                var bs = SelectedSubject?.BaseSubject;
+                var bs = SelectedObject?.BaseObject;
                 if (value)
-                    SelectedSubject = Subjects.First(x =>
-                    x.BaseSubject.Person == Person.Third &&
-                    x.BaseSubject.Number == Number.Singular &&
-                    x.BaseSubject.Gender == Gender.Female);
+                    SelectedObject = Objects.First(x =>
+                    x.BaseObject.Person == Person.Third &&
+                    x.BaseObject.Number == Number.Singular &&
+                    x.BaseObject.Gender == Gender.Female);
                 OnPropertyChanged(nameof(IsFemale));
             }
         }
@@ -214,18 +215,15 @@ class SubjectVM : INotifyPropertyChanged
             {
                 _isNeuter = value;
                 if (value)
-                    SelectedSubject = Subjects.First(x =>
-                    x.BaseSubject.Person == Person.Third &&
-                    x.BaseSubject.Number == Number.Singular &&
-                    x.BaseSubject.Gender == Gender.Neuter);
+                    SelectedObject = Objects.First(x =>
+                    x.BaseObject.Person == Person.Third &&
+                    x.BaseObject.Number == Number.Singular &&
+                    x.BaseObject.Gender == Gender.Neuter);
                 OnPropertyChanged(nameof(IsNeuter));
             }
         }
     }
     private bool _isNeuter = true;
-
-
-
     public event PropertyChangedEventHandler PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)

@@ -2,18 +2,18 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:English.Maui.Controls"
-             x:Class="English.Maui.Controls.SubjectCV">
+             x:Class="English.Maui.Controls.ObjectCV">
 
     <ContentView.BindingContext>
-        <controls:SubjectVM />
+        <controls:ObjectVM />
     </ContentView.BindingContext>
     <VerticalStackLayout >
         <StackLayout Orientation="Horizontal">
             <Picker  Margin="10,1"
-                ItemsSource="{Binding Subjects}"
+                ItemsSource="{Binding Objects}"
                 ItemDisplayBinding="{Binding Name}"
-                SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
-                Title="Select Subject" />
+                SelectedItem="{Binding SelectedObject, Mode=TwoWay}"
+                Title="Select Object" />
             <StackLayout Margin="5">
                 <Label Text="Person" />
                 <RadioButton IsChecked="{Binding IsFirst}"  Content="First" />
