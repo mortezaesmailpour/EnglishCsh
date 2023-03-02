@@ -26,4 +26,10 @@ public partial class MainPage : ContentPage
 
         SemanticScreenReader.Announce(CounterBtn.Text);
     }
+
+    private void VerbCV_VerbModelChanged(object sender, EventArgs e)
+    {
+
+        viewModel.Title = "VerbCV_VerbModelChanged" + count++;
+    }
 }

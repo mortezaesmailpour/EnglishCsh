@@ -18,9 +18,9 @@
             <controls:ObjectCV>
 
             </controls:ObjectCV>
-            
-            
-            <controls:VerbCV>
+
+
+            <controls:VerbCV VerbModelChanged="VerbCV_VerbModelChanged">
 
             </controls:VerbCV>
             <Image
