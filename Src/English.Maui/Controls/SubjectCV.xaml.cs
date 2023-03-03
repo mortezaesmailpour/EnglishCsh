@@ -5,6 +5,7 @@ namespace English.Maui.Controls;
 
 public partial class SubjectCV : ContentView, INotifyPropertyChanged
 {
+    public event EventHandler ModelChanged;
     public SubjectCV()
 	{
 		InitializeComponent();
@@ -18,9 +19,11 @@ public partial class SubjectCV : ContentView, INotifyPropertyChanged
         UpdateView(_selectedSubject.BaseSubject);
     }
 
+    public SubjectModel GetSubject() => SelectedSubject;
+
     private void UpdateView(ISubject subject)
     {
-        //SubjectModelChanged?.Invoke(this, EventArgs.Empty);
+        ModelChanged?.Invoke(this, EventArgs.Empty);
         _isFirst = subject.Person == Person.First;
         _isSecond = subject.Person == Person.Second;
         _isThird = subject.Person == Person.Third;
@@ -74,6 +77,7 @@ public partial class SubjectCV : ContentView, INotifyPropertyChanged
                 _text = value;
                 OnPropertyChanged(nameof(Text));
                 OnPropertyChanged(nameof(Result));
+                ModelChanged?.Invoke(this, new EventArgs());
             }
         }
     }

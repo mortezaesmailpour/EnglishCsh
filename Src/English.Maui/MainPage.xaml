@@ -10,19 +10,12 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <controls:SubjectCV>
+            <StackLayout Orientation="Horizontal">
+                <controls:SubjectCV x:Name="mySubject" ModelChanged="OnModelChanged"/>
+                <controls:ObjectCV x:Name="myObject" ModelChanged="OnModelChanged"/>
+            </StackLayout>
 
-            </controls:SubjectCV>
-            
-            
-            <controls:ObjectCV>
-
-            </controls:ObjectCV>
-
-
-            <controls:VerbCV VerbModelChanged="VerbCV_VerbModelChanged">
-
-            </controls:VerbCV>
+            <controls:VerbCV x:Name="myVerb" ModelChanged="OnModelChanged"/>
             <Image
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"

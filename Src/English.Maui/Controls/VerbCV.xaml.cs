@@ -1,10 +1,11 @@
 using English.UI.Models;
+using System.Linq;
 
 namespace English.Maui.Controls;
 
 public partial class VerbCV : ContentView, INotifyPropertyChanged
 {
-    public event EventHandler VerbModelChanged;
+    public event EventHandler ModelChanged;
 
     public VerbCV()
 	{
@@ -18,7 +19,7 @@ public partial class VerbCV : ContentView, INotifyPropertyChanged
         foreach (var item in verb.AllTenses)
             Tenses.Add(new VerbModel(item));
         _selectedTense = Tenses.First();
-        _selectedVerb = Verbs.First();
+        _selectedVerb = Verbs.First(v=>v.Name == "tell");
         OnPropertyChanged(nameof(Tenses));
         OnPropertyChanged(nameof(SelectedTense));
         OnPropertyChanged(nameof(Verbs));
@@ -56,10 +57,10 @@ public partial class VerbCV : ContentView, INotifyPropertyChanged
     }
     public VerbModel _selectedVerb;
 
+    public IVerb GetVerb() => SelectedVerb.BaseVerb.ChangeTense(SelectedTense.BaseVerb.Tense);
     public void UpdateView()
     {
-
-        VerbModelChanged?.Invoke(this, EventArgs.Empty);
+        ModelChanged?.Invoke(this, EventArgs.Empty);
         var tense = _selectedTense.BaseVerb.Tense;
         _isContinuous = tense.Is(Tense.Continuous);
         _isPerfect = tense.Is(Tense.Perfect);

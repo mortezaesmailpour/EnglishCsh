@@ -27,9 +27,16 @@ public partial class MainPage : ContentPage
         SemanticScreenReader.Announce(CounterBtn.Text);
     }
 
-    private void VerbCV_VerbModelChanged(object sender, EventArgs e)
+    private void OnModelChanged(object sender, EventArgs e)
     {
+        var sbj = mySubject?.GetSubject();
+        var obj = myObject?.GetObject();
+        var vrb = myVerb?.GetVerb();
 
-        viewModel.Title = "VerbCV_VerbModelChanged" + count++;
+        if (vrb != null)
+        {
+            var result = $"{mySubject.Result} {vrb.ToStringFor(sbj.BaseSubject)} {myObject.Result}";
+            viewModel.Title = result;
+        }
     }
 }
