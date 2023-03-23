@@ -1,5 +1,3 @@
-using English.Persons;
-
 namespace English.Verbs.Present;
 
 public class PassivePresentContinuous : Verb
@@ -10,8 +8,8 @@ public class PassivePresentContinuous : Verb
     }
     public override string ToStringFor(IPersons  subject) => subject.Person switch
     {
-        Person.First when subject.Number == Number.Singular => "am being " + Gerund,
-        Person.Third when subject.Number == Number.Singular => "is being " + Gerund,
-        _ => "are being " + Gerund,
+        Person.First when subject.Number == Number.Singular => "am being " + PastParticiple,
+        Person.Third when subject.Number == Number.Singular => "is being " + PastParticiple,
+        _ => "are being " + PastParticiple,
     };
 }

@@ -1,5 +1,3 @@
-using English.Persons;
-
 namespace English.Verbs.Future;
 
 public class PassiveFuturePerfectContinuous : Verb
@@ -9,5 +7,9 @@ public class PassiveFuturePerfectContinuous : Verb
     {
     }
 
-    public override string ToStringFor(IPersons subject) => "will have been being " + PastParticiple;
+    public override string ToStringFor(IPersons subject) => subject.Person switch
+    {
+        Person.Third when subject.Number == Number.Singular => "will has been being " + PastParticiple,
+        _ => "will have been being " + PastParticiple,
+    };
 }

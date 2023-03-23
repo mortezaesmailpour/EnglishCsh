@@ -8,35 +8,25 @@
         xmlns:viewModels="clr-namespace:English.UI.ViewModels"
         xmlns:Views="clr-namespace:English.UI.Views" x:Class="English.UI.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="280">
+        Title="MainWindow" Height="480" Width="780">
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <TextBlock Text= "{Binding SelectedSubject.Name}"/>
-            <!--<TextBox x:Name="test" Background="Aqua" Text= "{Binding Subject2 ,Mode=TwoWay}"/>
-            <Views:Subject Height="150" 
-                              SelectedSubject ="{Binding Subject2, Mode=TwoWay}"/>-->
-            <Label Content="Subjests"  />
-            <Views:Subject Height="150" SelectedSubject="{Binding SelectedSubject, Mode=TwoWay}" />
-            <Label Content="Tenses"  />
-            <Views:VerbUserControl Height="150"  />
-            <!--<ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Subjects}"    
-                SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"  />
-            <Label Content="Objests"  />
-            <ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Objects}"    
-                SelectedItem="{Binding SelectedObject}"  />
-            <Label Content="Tenses"  />
-            <ComboBox DisplayMemberPath="Name"
-                ItemsSource="{Binding Tenses}"    
-                SelectedItem="{Binding SelectedTense}"  />
-            <Label Content="Actions"  />
+            <TextBlock Text= "{Binding Subject.Name}"/>
+            <TextBlock Text= "{Binding Object.Name}"/>
+            <TextBlock Text= "{Binding Verb.Name}"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Views:SubjectUC SubjectM="{Binding Subject ,Mode=TwoWay}" />
+                <Views:ObjectUC ObjectM="{Binding Object ,Mode=TwoWay}" />
+            </StackPanel>
+
+            <Views:VerbUC VerbM="{Binding Verb ,Mode=TwoWay}" HorizontalAlignment="Left" />
             <Button Width="120" Content="Update" Command="{Binding UpdateCommand}"/>
-            <Label Content="{Binding Result}"  />-->
+            <Label Content="{Binding Result}"  />
 
 
         </StackPanel>

@@ -1,28 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using English.UI.ViewModels;
 
-namespace English.UI.Views
+namespace English.UI.Views;
+
+public partial class VerbUserControl : UserControl
 {
-    /// <summary>
-    /// Interaction logic for VerbUserControl.xaml
-    /// </summary>
-    public partial class VerbUserControl : UserControl
+    public ObservableCollection<VerbModel> Verbs { get; init; }
+    public VerbModel VerbM
     {
-        public VerbUserControl()
+        get => (VerbModel)GetValue(VerbModelProperty);
+        set => SetValue(VerbModelProperty, value);
+    }
+    public VerbModel SelectedVerb
+    {
+        get => _selectedVerb;
+        set
         {
-            InitializeComponent();
+            if (_selectedVerb != value)
+            {
+                _selectedVerb = value;
+                OnPropertyChanged(nameof(_selectedVerb));
+            }
         }
+    }
+    private VerbModel _selectedVerb;
+    public VerbUserControl()
+    {
+        InitializeComponent();
+        Verbs = new ObservableCollection<VerbModel>();
+        var verb = new Verb("fallow");
+        foreach (var item in verb.AllTenses)
+            Verbs.Add(new VerbModel(item));
+        SelectedVerb = Verbs.First();
+        VerbM = SelectedVerb;
+        OnPropertyChanged(nameof(Verbs));
+        OnPropertyChanged(nameof(SelectedVerb));
+        OnPropertyChanged(nameof(VerbM));
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public static readonly DependencyProperty VerbModelProperty =
+        DependencyProperty.Register(nameof(VerbM), typeof(object),
+          typeof(VerbUserControl), new PropertyMetadata(""));
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

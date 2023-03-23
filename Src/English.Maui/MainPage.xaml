@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:English.Maui.Controls"
+             x:Class="English.Maui.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <StackLayout>
+                <controls:SubjectCV x:Name="mySubject" ModelChanged="OnModelChanged"/>
+                <Label Text="                   ."/>
+                <controls:ObjectCV x:Name="myObject" ModelChanged="OnModelChanged"/>
+            </StackLayout>
+
+            <controls:VerbCV x:Name="myVerb" ModelChanged="OnModelChanged"/>
+
+            <Label Text="{Binding Title}" FontSize ="Medium"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

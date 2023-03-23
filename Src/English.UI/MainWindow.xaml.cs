@@ -4,7 +4,7 @@ namespace English.UI;
 
 public partial class MainWindow : Window
 {
-    private readonly LoginViewModel _viewModel;
+    //private readonly LoginViewModel _viewModel;
     public MainWindow()
     {
         //_viewModel = new MainViewModel("Morteza");;

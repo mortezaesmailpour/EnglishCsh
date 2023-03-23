@@ -1,5 +1,3 @@
-using English.Persons;
-
 namespace English.Verbs.Past;
 
 public class PassivePastPerfectContinuous : Verb

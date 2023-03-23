@@ -1,0 +1,46 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="English.Maui.Controls.VerbCV">
+    <StackLayout Orientation="Horizontal" >
+        <StackLayout Margin="10">
+            <Picker 
+                ItemsSource="{Binding Verbs}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedVerb, Mode=TwoWay}"
+                Title="Select Verb" />
+            <Picker 
+                ItemsSource="{Binding Tenses}"
+                ItemDisplayBinding="{Binding Tense}"
+                SelectedItem="{Binding SelectedTense, Mode=TwoWay}"
+                Title="Select Tense" />
+            <Picker 
+                ItemsSource="{Binding Tenses}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedTense, Mode=TwoWay}"
+                Title="Select Tense" />
+        </StackLayout>
+        <StackLayout Margin="10,20" Orientation="Horizontal">
+            <StackLayout Margin="5">
+                <RadioButton IsChecked="{Binding IsPresent}" Content="Present"/>
+                <RadioButton IsChecked="{Binding IsPast}" Content="Past"/>
+                <RadioButton IsChecked="{Binding IsFuture}" Content="Future"/>
+                <RadioButton IsChecked="{Binding IsConditional}" Content="Conditional"/>
+            </StackLayout>
+            <StackLayout  Margin="5">
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding IsContinuous}"/>
+                    <Label Text="Continuous" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding IsPerfect}"/>
+                    <Label Text="Perfect" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding IsPassive}"/>
+                    <Label Text="Passive" VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+    </StackLayout>
+</ContentView>

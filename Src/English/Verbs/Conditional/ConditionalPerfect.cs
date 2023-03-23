@@ -1,5 +1,3 @@
-using English.Persons;
-
 namespace English.Verbs.Conditional;
 
 public class ConditionalPerfect : Verb

@@ -1,0 +1,40 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="English.Maui.Controls.SubjectCV">
+    <VerticalStackLayout>
+        <StackLayout Margin="5" Orientation="Horizontal">
+            <Label Margin="5" Text="Result :"/>
+            <Label Margin="5" Text="{Binding Result,Mode=OneWay}"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <StackLayout Margin="5">
+                <Picker Margin="10,1"
+                    ItemsSource="{Binding Subjects}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
+                    Title="Select Subject"/>
+                <StackLayout IsVisible="{Binding IsNotFirstAndSingular}">
+                    <Label Margin="10" Text="Noun"/>
+                    <Entry Margin="10" Text="{Binding Text, UpdateSourceEventName=PropertyChanged}"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="5">
+                <Label Margin="10" Text="Person"/>
+                <RadioButton IsChecked="{Binding IsFirst}"  Content="First"/>
+                <RadioButton IsChecked="{Binding IsSecond}" Content="Second"/>
+                <RadioButton IsChecked="{Binding IsThird}" Content="Third"/>
+            </StackLayout>
+            <StackLayout Margin="5" IsVisible="{Binding IsFirstOrThird}">
+                <Label Margin="10" Text="Number"/>
+                <RadioButton IsChecked="{Binding IsSingular}" Content="Singular"/>
+                <RadioButton IsChecked="{Binding IsPlural}" Content="Plural"/>
+            </StackLayout>
+            <StackLayout Margin="5" IsVisible="{Binding IsThirdAndSingular}">
+                <Label Margin="10" Text="Gender"/>
+                <RadioButton IsChecked="{Binding IsMale}" Content="Male"/>
+                <RadioButton IsChecked="{Binding IsFemale}" Content="Female"/>
+                <RadioButton IsChecked="{Binding IsNeuter}" Content="Neuter"/>
+            </StackLayout>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentView>

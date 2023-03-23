@@ -1,6 +1,3 @@
-using English.Persons;
-using English.Verbs;
-
 namespace English.SentenceElements;
 
 public class SubjecVerb : ISentenceElement
