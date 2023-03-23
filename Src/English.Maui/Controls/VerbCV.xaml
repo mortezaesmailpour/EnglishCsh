@@ -3,17 +3,17 @@
              x:Class="English.Maui.Controls.VerbCV">
     <StackLayout Orientation="Horizontal" >
         <StackLayout Margin="10">
-            <Picker WidthRequest="250"
+            <Picker 
                 ItemsSource="{Binding Verbs}"
                 ItemDisplayBinding="{Binding Name}"
                 SelectedItem="{Binding SelectedVerb, Mode=TwoWay}"
                 Title="Select Verb" />
-            <Picker WidthRequest="250"
+            <Picker 
                 ItemsSource="{Binding Tenses}"
                 ItemDisplayBinding="{Binding Tense}"
                 SelectedItem="{Binding SelectedTense, Mode=TwoWay}"
                 Title="Select Tense" />
-            <Picker WidthRequest="250"
+            <Picker 
                 ItemsSource="{Binding Tenses}"
                 ItemDisplayBinding="{Binding Name}"
                 SelectedItem="{Binding SelectedTense, Mode=TwoWay}"

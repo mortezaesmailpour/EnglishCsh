@@ -13,7 +13,10 @@ public partial class SubjectCV : ContentView, INotifyPropertyChanged
         Subjects = new ObservableCollection<SubjectModel>();
         foreach (var item in SubjectPersonalPronouns.All)
             Subjects.Add(new SubjectModel(item));
-        _selectedSubject = Subjects.First();
+        _text = "Mahsa";
+        OnPropertyChanged(nameof(Text));
+        OnPropertyChanged(nameof(Result));
+        _selectedSubject = Subjects.First(s => s.Name=="She");
         OnPropertyChanged(nameof(Subjects));
         OnPropertyChanged(nameof(SelectedSubject));
         UpdateView(_selectedSubject.BaseSubject);
@@ -34,15 +37,15 @@ public partial class SubjectCV : ContentView, INotifyPropertyChanged
         _isNeuter = subject.Gender == Gender.Neuter;
         OnPropertyChanged(nameof(IsFirst));
         OnPropertyChanged(nameof(IsSecond));
-        OnPropertyChanged(nameof(IsFirstOrThird));
         OnPropertyChanged(nameof(IsThird));
         OnPropertyChanged(nameof(IsSingular));
-        OnPropertyChanged(nameof(IsThirdAndSingular));
-        OnPropertyChanged(nameof(IsNotFirstAndSingular));
         OnPropertyChanged(nameof(IsPlural));
         OnPropertyChanged(nameof(IsMale));
         OnPropertyChanged(nameof(IsFemale));
         OnPropertyChanged(nameof(IsNeuter));
+        OnPropertyChanged(nameof(IsFirstOrThird));
+        OnPropertyChanged(nameof(IsThirdAndSingular));
+        OnPropertyChanged(nameof(IsNotFirstAndSingular));
         OnPropertyChanged(nameof(Result));
     }
     public ObservableCollection<SubjectModel> Subjects { get; init; }
@@ -92,15 +95,18 @@ public partial class SubjectCV : ContentView, INotifyPropertyChanged
         get => _isFirst;
         set
         {
-            _isFirst = value;
-            var bs = SelectedSubject.BaseSubject;
-            if (value)
-                SelectedSubject = Subjects.First(x =>
-                x.BaseSubject.Number == bs.Number &&
-                x.BaseSubject.Person == Person.First);
-            OnPropertyChanged(nameof(IsFirst));
-            OnPropertyChanged(nameof(IsFirstOrThird));
-            OnPropertyChanged(nameof(IsThirdAndSingular));
+            if (_isFirst != value)
+            {
+                _isFirst = value;
+                var bs = SelectedSubject.BaseSubject;
+                if (value && bs.Person != Person.First)
+                    SelectedSubject = Subjects.First(x =>
+                    x.BaseSubject.Number == bs.Number &&
+                    x.BaseSubject.Person == Person.First);
+                OnPropertyChanged(nameof(IsFirst));
+                OnPropertyChanged(nameof(IsFirstOrThird));
+                OnPropertyChanged(nameof(IsThirdAndSingular));
+            }
         }
     }
     private bool _isFirst;
@@ -109,12 +115,16 @@ public partial class SubjectCV : ContentView, INotifyPropertyChanged
         get => _isSecond;
         set
         {
-            _isSecond = value;
-            if (value)
-                SelectedSubject = Subjects.First(x => x.BaseSubject.Person == Person.Second);
-            OnPropertyChanged(nameof(IsSecond));
-            OnPropertyChanged(nameof(IsFirstOrThird));
-            OnPropertyChanged(nameof(IsThirdAndSingular));
+            if (_isSecond != value)
+            {
+                _isSecond = value;
+                var bs = SelectedSubject.BaseSubject;
+                if (value && bs.Person != Person.Second)
+                    SelectedSubject = Subjects.First(x => x.BaseSubject.Person == Person.Second);
+                OnPropertyChanged(nameof(IsSecond));
+                OnPropertyChanged(nameof(IsFirstOrThird));
+                OnPropertyChanged(nameof(IsThirdAndSingular));
+            }
         }
     }
     private bool _isSecond;
@@ -123,15 +133,19 @@ public partial class SubjectCV : ContentView, INotifyPropertyChanged
         get => _isThird;
         set
         {
-            _isThird = value;
-            var bs = SelectedSubject.BaseSubject;
-            if (value)
-                SelectedSubject = Subjects.First(x =>
-                x.BaseSubject.Number == bs.Number &&
-                x.BaseSubject.Person == Person.Third);
-            OnPropertyChanged(nameof(IsThird));
-            OnPropertyChanged(nameof(IsFirstOrThird));
-            OnPropertyChanged(nameof(IsThirdAndSingular));
+            if (_isThird != value)
+            {
+                _isThird = value;
+                var bs = SelectedSubject.BaseSubject;
+                if (value && bs.Person != Person.Third)
+                    SelectedSubject = Subjects.First(x =>
+                    x.BaseSubject.Number == bs.Number &&
+                    x.BaseSubject.Gender == bs.Gender &&
+                    x.BaseSubject.Person == Person.Third);
+                OnPropertyChanged(nameof(IsThird));
+                OnPropertyChanged(nameof(IsFirstOrThird));
+                OnPropertyChanged(nameof(IsThirdAndSingular));
+            }
         }
     }
     private bool _isThird;

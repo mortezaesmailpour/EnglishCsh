@@ -13,12 +13,17 @@ public partial class ObjectCV : ContentView, INotifyPropertyChanged
         Objects = new ObservableCollection<ObjectModel>();
         foreach (var item in ObjectPersonalPronouns.All)
             Objects.Add(new ObjectModel(item));
-        _selectedObject = Objects.First();
+        _text = "Woman, Life, Freedom";
+        OnPropertyChanged(nameof(Text));
+        OnPropertyChanged(nameof(Result));
+        _selectedObject = Objects.First(o => o.Name=="It");
         OnPropertyChanged(nameof(Objects));
         OnPropertyChanged(nameof(SelectedObject));
         UpdateView(_selectedObject.BaseObject);
     }
+
     public ObjectModel GetObject() => SelectedObject;
+    
     private void UpdateView(IObject @object)
     {
         ModelChanged?.Invoke(this, new EventArgs());
@@ -32,15 +37,15 @@ public partial class ObjectCV : ContentView, INotifyPropertyChanged
         _isNeuter = @object.Gender == Gender.Neuter;
         OnPropertyChanged(nameof(IsFirst));
         OnPropertyChanged(nameof(IsSecond));
-        OnPropertyChanged(nameof(IsFirstOrThird));
         OnPropertyChanged(nameof(IsThird));
         OnPropertyChanged(nameof(IsSingular));
-        OnPropertyChanged(nameof(IsThirdAndSingular));
-        OnPropertyChanged(nameof(IsNotFirstAndSingular));
         OnPropertyChanged(nameof(IsPlural));
         OnPropertyChanged(nameof(IsMale));
         OnPropertyChanged(nameof(IsFemale));
         OnPropertyChanged(nameof(IsNeuter));
+        OnPropertyChanged(nameof(IsFirstOrThird));
+        OnPropertyChanged(nameof(IsThirdAndSingular));
+        OnPropertyChanged(nameof(IsNotFirstAndSingular));
         OnPropertyChanged(nameof(Result));
     }
 
@@ -86,20 +91,24 @@ public partial class ObjectCV : ContentView, INotifyPropertyChanged
     public bool IsThirdAndSingular => _isThird && _isSingular;
     public bool IsNotFirstAndSingular => !(_isFirst && _isSingular);
 
+
     public bool IsFirst
     {
         get => _isFirst;
         set
         {
-            _isFirst = value;
-            var bs = SelectedObject.BaseObject;
-            if (value)
-                SelectedObject = Objects.First(x =>
-                x.BaseObject.Number == bs.Number &&
-                x.BaseObject.Person == Person.First);
-            OnPropertyChanged(nameof(IsFirst));
-            OnPropertyChanged(nameof(IsFirstOrThird));
-            OnPropertyChanged(nameof(IsThirdAndSingular));
+            if (_isFirst != value)
+            {
+                _isFirst = value;
+                var bs = SelectedObject.BaseObject;
+                if (value && bs.Person != Person.First)
+                    SelectedObject = Objects.First(x =>
+                    x.BaseObject.Number == bs.Number &&
+                    x.BaseObject.Person == Person.First);
+                OnPropertyChanged(nameof(IsFirst));
+                OnPropertyChanged(nameof(IsFirstOrThird));
+                OnPropertyChanged(nameof(IsThirdAndSingular));
+            }
         }
     }
     private bool _isFirst;
@@ -108,12 +117,16 @@ public partial class ObjectCV : ContentView, INotifyPropertyChanged
         get => _isSecond;
         set
         {
-            _isSecond = value;
-            if (value)
-                SelectedObject = Objects.First(x => x.BaseObject.Person == Person.Second);
-            OnPropertyChanged(nameof(IsSecond));
-            OnPropertyChanged(nameof(IsFirstOrThird));
-            OnPropertyChanged(nameof(IsThirdAndSingular));
+            if (_isSecond != value)
+            {
+                _isSecond = value;
+                var bs = SelectedObject.BaseObject;
+                if (value && bs.Person != Person.Second)
+                    SelectedObject = Objects.First(x => x.BaseObject.Person == Person.Second);
+                OnPropertyChanged(nameof(IsSecond));
+                OnPropertyChanged(nameof(IsFirstOrThird));
+                OnPropertyChanged(nameof(IsThirdAndSingular));
+            }
         }
     }
     private bool _isSecond;
@@ -122,15 +135,19 @@ public partial class ObjectCV : ContentView, INotifyPropertyChanged
         get => _isThird;
         set
         {
-            _isThird = value;
-            var bs = SelectedObject.BaseObject;
-            if (value)
-                SelectedObject = Objects.First(x =>
-                x.BaseObject.Number == bs.Number &&
-                x.BaseObject.Person == Person.Third);
-            OnPropertyChanged(nameof(IsThird));
-            OnPropertyChanged(nameof(IsFirstOrThird));
-            OnPropertyChanged(nameof(IsThirdAndSingular));
+            if (_isThird != value)
+            {
+                _isThird = value;
+                var bs = SelectedObject.BaseObject;
+                if (value && bs.Person != Person.Third)
+                    SelectedObject = Objects.First(x =>
+                    x.BaseObject.Number == bs.Number &&
+                    x.BaseObject.Gender == bs.Gender &&
+                    x.BaseObject.Person == Person.Third);
+                OnPropertyChanged(nameof(IsThird));
+                OnPropertyChanged(nameof(IsFirstOrThird));
+                OnPropertyChanged(nameof(IsThirdAndSingular));
+            }
         }
     }
     private bool _isThird;

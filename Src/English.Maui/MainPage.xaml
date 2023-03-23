@@ -5,39 +5,17 @@
              x:Class="English.Maui.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+        <VerticalStackLayout>
 
-            <StackLayout Orientation="Horizontal">
+            <StackLayout>
                 <controls:SubjectCV x:Name="mySubject" ModelChanged="OnModelChanged"/>
+                <Label Text="                   ."/>
                 <controls:ObjectCV x:Name="myObject" ModelChanged="OnModelChanged"/>
             </StackLayout>
 
             <controls:VerbCV x:Name="myVerb" ModelChanged="OnModelChanged"/>
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-            <Button
-                x:Name="TestBtn"
-                Text="{Binding Title}"
-                SemanticProperties.Hint="it's for test"
-                HorizontalOptions="Center"/>
-            <Button
-                x:Name="TestBtn2"
-                Text="{Binding MoP}"
-                SemanticProperties.Hint="it's for test"
-                HorizontalOptions="Center"/>
+            <Label Text="{Binding Title}" FontSize ="Medium"/>
 
         </VerticalStackLayout>
     </ScrollView>
