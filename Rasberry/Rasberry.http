@@ -1,0 +1,11 @@
+@Rasberry_HostAddress = http://localhost:5099
+
+GET {{Rasberry_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{Rasberry_HostAddress}}/todos/1
+Accept: application/json
+
+###

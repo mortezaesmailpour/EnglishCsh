@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "English.Test", "Src\English
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Maui", "Src\English.Maui\English.Maui.csproj", "{0C47BC95-86F3-4792-992A-87640586D8EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasberry", "Rasberry\Rasberry.csproj", "{A979CDA7-631C-4F8B-83A3-DCB70FE9E073}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{0C47BC95-86F3-4792-992A-87640586D8EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C47BC95-86F3-4792-992A-87640586D8EB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C47BC95-86F3-4792-992A-87640586D8EB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A979CDA7-631C-4F8B-83A3-DCB70FE9E073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A979CDA7-631C-4F8B-83A3-DCB70FE9E073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A979CDA7-631C-4F8B-83A3-DCB70FE9E073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A979CDA7-631C-4F8B-83A3-DCB70FE9E073}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{63D57A65-9175-466A-A295-78A1B6E96B6B} = {A418E708-306E-4BBB-8FF2-2425FC0597CE}
 		{CDA0E82D-7021-4791-A33A-3B623DBD1B4E} = {A418E708-306E-4BBB-8FF2-2425FC0597CE}
 		{0C47BC95-86F3-4792-992A-87640586D8EB} = {A418E708-306E-4BBB-8FF2-2425FC0597CE}
+		{A979CDA7-631C-4F8B-83A3-DCB70FE9E073} = {A418E708-306E-4BBB-8FF2-2425FC0597CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CAB3C1CA-8114-4F44-BD58-C9C18231FF40}
